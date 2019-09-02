@@ -2,12 +2,32 @@
     color: #61ac40;
 }
 
-div.dropdown-menu a:hover {
-    color: #61ac40;
-}
-
 .navbar {
     background-color: #ffffff;
+}
+
+
+.content {
+    background-color: #3e3c3c;
+}
+
+.single {
+    padding: 30px;
+    color: #ffffff;
+}
+
+.lead-text {
+    color: #ffffff;
+    font-size: 18px;
+
+}
+
+.year {
+    font-size: 30 px;
+}
+
+div.dropdown-menu a:hover {
+    color: #61ac40;
 }
 
 input {
