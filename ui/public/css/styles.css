@@ -38,7 +38,7 @@ input {
     border-radius: 50px;
 }
 
-.main-container {
+.register-container {
     display: flex;
     justify-content: center;
     flex-basis: 50%;
@@ -49,5 +49,14 @@ input {
     align-items: center;
 }
 
+.login-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    display: flex;
+    flex-basis: 40%;
+}
 
 /* AM Still working on the navbar, i have not commited yet */
