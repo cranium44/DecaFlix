@@ -64,3 +64,31 @@ div.dropdown-menu a:hover {
 .head-content {
     padding: 20px;
 }
+
+a {
+    color: #1d1d1d;
+}
+
+a:hover {
+    color: #6ac045;
+    text-decoration: none;
+}
+
+.content {
+    background-color: #1d1d1d;
+}
+
+.single {
+    padding: 30px;
+    color: #ffffff;
+}
+
+.lead-text {
+    color: #ffffff;
+    font-size: 18px;
+
+}
+
+.year {
+    font-size: 30 px;
+}
