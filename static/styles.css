@@ -31,3 +31,33 @@ div.dropdown-menu a:hover {
     display: flex;
     flex-basis: 40%;
 }
+
+
+/* .hea {
+    background-color: #1d1d1d;
+    color: #ffffff;
+} */
+
+.para {
+    display: flex;
+    justify-content: center;
+}
+
+.para-txt {
+    display: flex;
+    justify-content: center;
+    max-width: 700px;
+}
+
+.display {
+    color: #1d1d1d;
+}
+
+.head {
+    background-color: #1d1d1d;
+    color: #ffffff;
+}
+
+.head-content {
+    padding: 20px;
+}
