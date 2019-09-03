@@ -1,0 +1,33 @@
+body,
+html {
+    background-color: whitesmoke;
+}
+
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #61ac40;
+}
+
+.navbar {
+    background-color: #ffffff;
+}
+
+div.dropdown-menu a:hover {
+    color: #61ac40;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    display: flex;
+    flex-basis: 40%;
+}
