@@ -9,3 +9,14 @@
 div.dropdown-menu a:hover {
     color: #61ac40;
 }
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;
+}
+
+body,
+html {
+    background-color: whitesmoke;
+}
