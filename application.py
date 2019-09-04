@@ -18,6 +18,17 @@ def index():
 @app.route("/register", methods=["GET", "POST"])
 def register():
 
+    # forget any user_id
+    # session.clear()
+
     # user get to the route via get
     if request.method == "GET":
         return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+
+    # user get to the route via get
+    if request.method == "GET":
+        return render_template("login.html")
