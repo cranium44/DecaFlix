@@ -3,17 +3,20 @@ html {
     background-color: whitesmoke;
 }
 
-
-.navbar-light .navbar-nav .nav-link:hover {
-    color: #61ac40;
+.navbar {
+    background-color: #1d1d1d;
 }
 
-.navbar {
-    background-color: #ffffff;
+.navbar-light .navbar-nav .nav-link {
+    color: #ffffff
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #6ac045;
 }
 
 div.dropdown-menu a:hover {
-    color: #61ac40;
+    color: #6ac045;
 }
 
 .register-container {
@@ -30,4 +33,62 @@ div.dropdown-menu a:hover {
 .login-card {
     display: flex;
     flex-basis: 40%;
+}
+
+
+/* .hea {
+    background-color: #1d1d1d;
+    color: #ffffff;
+} */
+
+.para {
+    display: flex;
+    justify-content: center;
+}
+
+.para-txt {
+    display: flex;
+    justify-content: center;
+    max-width: 700px;
+}
+
+.display {
+    color: #1d1d1d;
+}
+
+.head {
+    background-color: #1d1d1d;
+    color: #ffffff;
+}
+
+.head-content {
+    padding: 20px;
+}
+
+a {
+    color: #1d1d1d;
+}
+
+a:hover {
+    color: #6ac045;
+    text-decoration: none;
+}
+
+.content {
+    background-color: #1d1d1d;
+}
+
+.single {
+    padding: 30px;
+    color: #ffffff;
+}
+
+.lead-text {
+    color: #ffffff;
+    font-size: 18px;
+
+}
+
+.year {
+    font-size: 30 px;
 }
