@@ -1,24 +1,15 @@
-import pip._vendor.requests
-import flask.sessions
-import flask
-import mysql.connector
+import os
+
 from cs50 import SQL
-con = mysql.connector.connect()
-db = SQL("http//:localhost/decaflix")
+from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
+
+# Configure application
+app = Flask(__name__)
+
+# Ensure templates are auto_reloaded
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 
-@app.route('/login')
-def login():
-    username = requests.form.get("username")
-    pasword = requests.form.get("password")
-    hashed = genera
-
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    pass
-
-
-@app.route('/', methods=['GET', 'POST'])
-def method_name():
-    pass
+@app.route("/")
+def hello_world():
+    return render_template("index.html")
