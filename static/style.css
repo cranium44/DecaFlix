@@ -92,3 +92,7 @@ a:hover {
 .year {
     font-size: 30 px;
 }
+
+.card-footer {
+    background-color: #ffffff;
+}
