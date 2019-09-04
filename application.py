@@ -2,6 +2,7 @@ import os
 
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
+from helpers import lookup
 
 # Configure application
 app = Flask(__name__)
@@ -32,3 +33,15 @@ def login():
     # user get to the route via get
     if request.method == "GET":
         return render_template("login.html")
+
+
+@app.route("/movie", methods=["GET", "POST"])
+def movie():
+
+    if request.method == "POST":
+        title = request.form.get("title")
+
+        look_up_title = lookup(title)
+        print(look_up_title)
+
+    return "good"
