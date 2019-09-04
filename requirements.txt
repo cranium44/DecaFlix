@@ -1,0 +1,5 @@
+flask
+Flask-session
+requests
+mysql.connector
+cs50
