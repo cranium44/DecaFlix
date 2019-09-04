@@ -11,5 +11,13 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 
 @app.route("/")
-def hello_world():
+def index():
     return render_template("index.html")
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+
+    # user get to the route via get
+    if request.method == "GET":
+        return render_template("register.html")
