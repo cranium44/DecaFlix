@@ -126,5 +126,4 @@ dmypy.json
 .pyre/
 
 application.py
-helpers.py
 decaflix1.db
