@@ -125,5 +125,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-*.py
-*.db
+application.py
+helpers.py
+decaflix1.db
