@@ -6,7 +6,7 @@ import mysql.connector
 from tempfile import mkdtemp
 from cs50 import SQL
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import all, apology
+from helpers import all, apology, login_required
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 
 app = Flask(__name__)
@@ -47,7 +47,7 @@ def index():
 @app.route('/login', methods=['GET','POST'])
 def login():
    #clear session
-   session.clear()
+   #session.clear()
    if request.method == "POST":
       #retrieve info from the page
       username = requests.form.get("username")
