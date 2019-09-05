@@ -10,25 +10,24 @@
     <div class="container">
         <div class="single row">
             <div class="col-md-4">
-                <img src="{{lookup_title["poster"]}}" class="img-fluid" alt="Responsive image">
+                <a href="{{lookup_title["website"]}}"><img src="{{lookup_title["poster"]}}" class="img-fluid"
+                        alt="Responsive image"></a>
             </div>
 
             <div class="col-md-8">
-                <h1>{{lookup_title["title"]}} <span class="text-muted year">(2019)</span></h1>
+                <h1>{{lookup_title["title"]}} <span class="text-muted year">({{lookup_title["year"]}})</span></h1>
+                <p class="text-muted">Realeased: {{lookup_title["released"]}}</p>
                 <div class="text my-4">
                     <h5>Overview</h5>
-                    <p class="lead lead-text">Secret Service Agent Mike Banning is framed for the attempted
-                        assassination of
-                        the President and must evade his own agency and the FBI as he tries to uncover the real
-                        threat.</p>
+                    <p class="lead lead-text">{{lookup_title["plot"]}}</p>
                 </div>
 
                 <h5 class="">Featured Crew</h5>
                 <div class="row">
 
                     <div class="col-md-4">
-                        <h6 class="lead">Director, Screenplay</h6>
-                        <p class="lead-text">Ric Roman Waugh</p>
+                        <h6 class="lead">Director</h6>
+                        <p class="lead-text">{{lookup_title["director"]}}</p>
                     </div>
                     <div class="col-md-4">
                         <h6 class="lead">Director, Screenplay</h6>
@@ -38,6 +37,14 @@
                         <h6 class="lead">Screenplay</h6>
                         <p class="lead-text">Robert Mark Kamen</p>
                     </div>
+                </div>
+                <h5>Actors</h5>
+                <div>
+                    <p class="lead">{{lookup_title["actors"]}}</p>
+                </div>
+                <h5>Writer</h5>
+                <div>
+                    <p>{{lookup_title["writer"]}}</p>
                 </div>
             </div>
 
