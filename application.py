@@ -100,6 +100,7 @@ def register():
 
 
 @app.route('/collection', methods=['GET', 'POST'])
+@login_required
 def method_name():
    if request.method == 'GET':
       pass
