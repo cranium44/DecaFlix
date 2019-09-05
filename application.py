@@ -1,12 +1,15 @@
+import os
 import requests
 import flask.sessions
 import flask
 import mysql.connector
 
+from cs50 import SQL
+from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
 from tempfile import mkdtemp
 from cs50 import SQL
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import all, apology, login_required
+from helpers import all, apology, login_required, lookup
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 
 app = Flask(__name__)
@@ -77,20 +80,21 @@ def register():
       session.clear()
 
       #retrieve information from the form
-      username = request.form.get("username")
+      name = request.form.get("name")
+      email = request.form.get("email")
       password = request.form.get("password")
       confirmation = request.form.get("confirmation")
 
       #check username availability
-      isAvailable = user_available(username)
+      isAvailable = user_available(email)
 
       #run query and add the new user given that the usename exists and passwords match
       if isAvailable:
          if password == confirmation:
-            db.execute("INSERT INTO users(username, hash) VALUES(:username, :hash)", username, generate_password_hash(password))
-            db.execute("SELECT user_id FROM users WHERE username = :username", username)
+            db.execute("INSERT INTO users(name, email, hash) VALUES(:name, :email, :hash)", name, email, generate_password_hash(password))
+            db.execute("SELECT user_id FROM users WHERE email = :email", email)
             res = db.fetchall()
-            session['user_id'] = res[0]['user_id'] #remember current user
+            session['id'] = res[0]['user_id'] #remember current user
             return render_template("index.html")
          else:
             return apology("Passwords do not match")
@@ -100,15 +104,11 @@ def register():
 
 
 @app.route('/collection', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def method_name():
    if request.method == 'GET':
       pass
-import os
 
-from cs50 import SQL
-from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
-from helpers import lookup
 
 # Configure application
 app = Flask(__name__)
