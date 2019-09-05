@@ -1,5 +1,7 @@
-import pip._vendor.requests
+import requests
 import mysql.connector
+import json
+import http.client
 
 con = mysql.connector.connect(
    host = "localhost",
@@ -11,11 +13,18 @@ con = mysql.connector.connect(
 
 db = con.cursor()
 
-def lookup(title):
-    pass
+def all():
+# https://api.themoviedb.org/3/movie/550?api_key=28dda9f76d76f128b47831768bc9a103    COMPLETE_API = ""
+
+    conn = http.client.HTTPSConnection("api.themoviedb.org")
+    payload = "{}"
+    conn.request("GET", "/3/movie/%7Bmovie_id%7D?language=en-US&api_key=28dda9f76d76f128b47831768bc9a103%3C%3Capi_key%3E%3E", payload)
+    res = conn.getresponse()
+    data = res.read()
+    return data
 
 def apology(message):
-    pass
+    return render_template("apology.html", message)
 
 
 
