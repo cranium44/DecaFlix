@@ -4,6 +4,30 @@
 {{lookup_title["title"]}}
 {% endblock %}
 
+{% block style %}
+<style>
+    .rate {
+        border: 1px solid white;
+        border-radius: 47%;
+        padding: 9px;
+    }
+
+    .rate:hover {
+        background-color: #ffffff;
+        color: #1d1d1d;
+    }
+
+    .play {
+        font-size: 15px;
+        color: #ffffff;
+    }
+
+    .play-a {
+        color: #ffffff;
+    }
+</style>
+{% endblock %}
+
 {% block main %}
 
 <section class="content">
@@ -16,10 +40,20 @@
 
             <div class="col-md-8">
                 <h1>{{lookup_title["title"]}} <span class="text-muted year">({{lookup_title["year"]}})</span></h1>
-                <p class="text-muted">Realeased: {{lookup_title["released"]}}</p>
+                <a class="play-a" href="{{lookup_title["website"]}}" target="_blank"><i
+                        class="play far fa-play-circle"></i>
+                    play trailer</a>
+
+                <p class="text-muted my-4">Realeased: {{lookup_title["released"]}}</p>
+
+                <div>
+                    <span class="text-muted tooltiptext"> <i class="rate fas fa-star"></i> Rating</span>
+                </div>
+
                 <div class="text my-4">
                     <h5>Overview</h5>
                     <p class="lead lead-text">{{lookup_title["plot"]}}</p>
+
                 </div>
 
                 <h5 class="">Featured Crew</h5>
@@ -29,14 +63,14 @@
                         <h6 class="lead">Director</h6>
                         <p class="lead-text">{{lookup_title["director"]}}</p>
                     </div>
-                    <div class="col-md-4">
+                    <!-- <div class="col-md-4">
                         <h6 class="lead">Director, Screenplay</h6>
                         <p class="lead-text">Matt Cook, Screenplay</p>
                     </div>
                     <div class="col-md-4">
                         <h6 class="lead">Screenplay</h6>
                         <p class="lead-text">Robert Mark Kamen</p>
-                    </div>
+                    </div> -->
                 </div>
                 <h5>Actors</h5>
                 <div>
@@ -49,6 +83,17 @@
             </div>
 
         </div>
+
+        <iframe src="{{lookup_title["website"]}}">
+            <p>Your browser does not support iframes.</p>
+        </iframe>
+
+
+        <!-- <video width="400" controls>
+            <source src="{{lookup_title["website"]}}" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video> -->
+
     </div>
 
 </section>
