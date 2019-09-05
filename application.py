@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Ensure templates are auto_reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-
+#index
 @app.route("/")
 def index():
     return render_template("index.html")
