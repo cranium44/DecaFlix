@@ -13,6 +13,19 @@ con = mysql.connector.connect(
 
 db = con.cursor()
 
+def login_required(f):
+    """
+    Decorate routes to require login.
+
+    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
+
 def all():
 # https://api.themoviedb.org/3/movie/550?api_key=28dda9f76d76f128b47831768bc9a103    COMPLETE_API = ""
 
