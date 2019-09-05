@@ -92,3 +92,34 @@ a:hover {
 .year {
     font-size: 30 px;
 }
+
+.card-footer {
+    background-color: #ffffff;
+}
+
+.input-icons i {
+    position: absolute;
+}
+
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.icon {
+    padding: 10px;
+    min-width: 40px;
+}
+
+.input-field {
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.iframe {
+    height: 900px;
+    width: 100%;
+    border: none;
+}
