@@ -117,3 +117,9 @@ a:hover {
     padding: 10px;
     text-align: center;
 }
+
+.iframe {
+    height: 900px;
+    width: 100%;
+    border: none;
+}
