@@ -37,6 +37,7 @@ def register():
 
         # validate input before saving to the database
         errors = []
+
         # query database for username to know if it already exists
         rows = db.execute(
             "SELECT * FROM users WHERE username = :username", username=username)
@@ -65,8 +66,8 @@ def register():
         else:
             # validation passed
 
-            # id = db.execute("INSERT INTO users (username, email, hash) VALUES(:username, :email, :hash)",
-            #                 username=username, email=email, hash=password)
+            id = db.execute("INSERT INTO users (username, email, hash) VALUES(:username, :email, :hash)",
+                            username=username, email=email, hash=password)
 
             return redirect("/")
 
