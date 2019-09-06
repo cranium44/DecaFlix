@@ -12,11 +12,11 @@ html {
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-    color: #6ac045;
+    color: #aec643
 }
 
 div.dropdown-menu a:hover {
-    color: #6ac045;
+    color: #aec643
 }
 
 .register-container {
@@ -70,7 +70,7 @@ a {
 }
 
 a:hover {
-    color: #6ac045;
+    color: #aec643;
     text-decoration: none;
 }
 
@@ -122,4 +122,13 @@ a:hover {
     height: 900px;
     width: 100%;
     border: none;
+}
+
+.signup {
+    color: #ffffff;
+
+}
+
+.signup:hover {
+    color: #aec643
 }

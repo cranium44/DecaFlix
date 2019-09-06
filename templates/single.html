@@ -25,6 +25,12 @@
     .play-a {
         color: #ffffff;
     }
+
+    .frame {
+        width: 100%;
+        height: 900px;
+        ;
+    }
 </style>
 {% endblock %}
 
@@ -84,9 +90,17 @@
 
         </div>
 
+        <iframe class="frame" src="{{lookup_title["website"]}}"></iframe>
+
+        <iframe id="frame2" class="frame" src=""></iframe>
 
     </div>
 
 </section>
+
+{% endblock %}
+
+{% block script %}
+
 
 {% endblock %}
