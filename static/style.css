@@ -1,40 +1,39 @@
 body,
 html {
-    background-color: whitesmoke;
+  background-color: whitesmoke;
 }
 
 .navbar {
-    background-color: #1d1d1d;
+  background-color: #1d1d1d;
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: #ffffff
+  color: #ffffff;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-    color: #aec643
+  color: #aec643;
 }
 
 div.dropdown-menu a:hover {
-    color: #aec643
+  color: #aec643;
 }
 
 .register-container {
-    display: flex;
-    justify-content: center;
-    flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  flex-basis: 50%;
 }
 
 .login-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .login-card {
-    display: flex;
-    flex-basis: 40%;
+  display: flex;
+  flex-basis: 40%;
 }
-
 
 /* .hea {
     background-color: #1d1d1d;
@@ -42,93 +41,91 @@ div.dropdown-menu a:hover {
 } */
 
 .para {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .para-txt {
-    display: flex;
-    justify-content: center;
-    max-width: 700px;
+  display: flex;
+  justify-content: center;
+  max-width: 700px;
 }
 
 .display {
-    color: #1d1d1d;
+  color: #1d1d1d;
 }
 
 .head {
-    background-color: #1d1d1d;
-    color: #ffffff;
+  background-color: #1d1d1d;
+  color: #ffffff;
 }
 
 .head-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 a {
-    color: #1d1d1d;
+  color: #1d1d1d;
 }
 
 a:hover {
-    color: #aec643;
-    text-decoration: none;
+  color: #aec643;
+  text-decoration: none;
 }
 
 .content {
-    background-color: #1d1d1d;
+  background-color: #1d1d1d;
 }
 
 .single {
-    padding: 30px;
-    color: #ffffff;
+  padding: 30px;
+  color: #ffffff;
 }
 
 .lead-text {
-    color: #ffffff;
-    font-size: 18px;
-
+  color: #ffffff;
+  font-size: 18px;
 }
 
 .year {
-    font-size: 30 px;
+  font-size: 30 px;
 }
 
 .card-footer {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 .input-icons i {
-    position: absolute;
+  position: absolute;
 }
 
 .input-icons {
-    width: 100%;
-    margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .icon {
-    padding: 10px;
-    min-width: 40px;
+  padding: 10px;
+  min-width: 40px;
 }
 
 .input-field {
-    border-radius: 20px;
-    width: 100%;
-    padding: 10px;
-    text-align: center;
+  border-radius: 20px;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
 }
 
 .iframe {
-    height: 900px;
-    width: 100%;
-    border: none;
+  height: 900px;
+  width: 100%;
+  border: none;
 }
 
 .signup {
-    color: #ffffff;
-
+  color: #ffffff;
 }
 
 .signup:hover {
-    color: #aec643
+  color: #aec643;
 }
