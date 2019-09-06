@@ -2,8 +2,9 @@ import os
 
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
-from helpers import lookup
+from helpers import lookup, login_required
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_session import Session
 
 # Configure application
 app = Flask(__name__)
@@ -66,8 +67,8 @@ def register():
         else:
             # validation passed
 
-            id = db.execute("INSERT INTO users (username, email, hash) VALUES(:username, :email, :hash)",
-                            username=username, email=email, hash=password)
+            id = db.execute("INSERT INTO users (username, email, hash) VALUES(:username, :email, :password_hash)",
+                            username=username, email=email, password_hash=generate_password_hash(password, method='pbkdf2:sha256', salt_length=8))
 
             return redirect("/")
 
