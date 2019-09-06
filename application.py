@@ -30,17 +30,22 @@ def register():
     if request.method == "POST":
 
         """Register user"""
-        username = request.form.get("username")
+        username = request.form.get("username").casefold()
         email = request.form.get("email")
         password = request.form.get("password")
         confirm_password = request.form.get("confirmPassword")
 
         # validate input before saving to the database
-
         errors = []
+        # query database for username to know if it already exists
+        rows = db.execute(
+            "SELECT * FROM users WHERE username = :username", username=username)
 
         if not username and not email and not password:
             errors.append({"msg": "Please fill in all fields"})
+
+        elif len(rows) > 0:
+            errors.append({"msg": "Username already exist"})
 
         elif not username:
             errors.append({"msg": "Username field must not be empty"})
@@ -59,11 +64,11 @@ def register():
 
         else:
             # validation passed
-            pass
 
             # id = db.execute("INSERT INTO users (username, email, hash) VALUES(:username, :email, :hash)",
             #                 username=username, email=email, hash=password)
-        return "User added to database"
+
+            return redirect("/")
 
     return render_template("register.html")
 
