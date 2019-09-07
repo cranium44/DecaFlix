@@ -19,8 +19,9 @@
     <header>
         <nav class="navbar navbar-expand-lg fixed-buttom navbar-light border-bottom">
             <a href="/"><img src="../static/images/logo-light.png" width="112" height="28" /></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
-                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" style="background-color: #ffffff !important" type="button"
+                data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -46,14 +47,14 @@
                     </li>
                 </ul>
                 {% if session.user_id %}
-                <div class="mb-2">
+                <div class="">
                     <!-- <a href="/register" class="btn btn-success ml-4 my-2 my-sm-0 submit">SignUp</a> -->
                     <!-- <a href="/register" class="ml-4 my-2 mr-4 my-sm-0 signup"> <i class="fas fa-users"></i> Hey
                         {{session.username}}</a> -->
-                    <div class="nav-item dropdown mr-4">
-                        <a class="nav-link dropdown-toggle signup mt-2" href="#" id="navbarDropdown" role="button"
+                    <div class="nav-item dropdown mr-4 mt-2">
+                        <a class="nav-link dropdown-toggle signup" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Hey {{session.username}}
+                            <i class="far fa-user"></i> Hey {{session.username}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#"><i class="fas fa-globe-africa"></i> Events</a>
@@ -64,13 +65,13 @@
                     </div>
                 </div>
                 {% else %}
-                <div class="mb-2  mt-2 mr-4">
+                <div class="nav-item mr-4 mt-2 ">
                     <!-- <a href="/register" class="btn btn-success ml-4 my-2 my-sm-0 submit">SignUp</a> -->
                     <a href="/register" class="ml-4 my-2 my-sm-0 signup"> <i class="fas fa-users"></i> SignUp</a>
                 </div>
                 {% endif %}
                 <form action="/movie" method="post" class="form-inline my-2 my-lg-0">
-                    <div class="input-icons my-2">
+                    <div class="input-icons">
                         <i class="fas fa-search icon"></i>
                         <input class="input-field form-control mr-sm-2 search" type="search" name="title"
                             placeholder="Search for movie.." aria-label="Search" />

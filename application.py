@@ -78,7 +78,7 @@ def logout():
 def register():
 
     # forget any user_id
-    # session.clear()
+    session.clear()
 
     # user get to the route via get
     if request.method == "POST":
