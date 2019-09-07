@@ -127,6 +127,7 @@ def register():
 
             # Remember which user has logged in
             session["user_id"] = id
+            session["username"] = username
 
             return redirect("/")
 
