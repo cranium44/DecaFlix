@@ -8,6 +8,7 @@ from flask_session import Session
 
 # Configure application
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 # Ensure templates are auto_reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -19,6 +20,47 @@ db = SQL("sqlite:///decaflix1.db")
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """Login user"""
+
+   # Forget any user_id
+    session.clear()
+
+    if request.method == "POST":
+
+        errors = []
+        # validate input
+
+        # query database for email
+        rows = db.execute(
+            "SELECT * FROM users WHERE email = :email", email=request.form.get("email"))
+
+        if not request.form.get("email"):
+            errors.append({"msg": "Email field must not be empty"})
+
+        elif not request.form.get("password"):
+            errors.append({"msg": "Password field must not be empty"})
+
+        elif len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+            errors.append({"msg": "invalid username and/or password"})
+
+        if len(errors) > 0:
+            return render_template("login.html", errors=errors, email=request.form.get("email"), password=request.form.get("password"))
+
+        else:
+            # validation passed
+
+            # Remember which user has logged in
+            session["user_id"] = rows[0]["id"]
+            session["username"] = rows[0]["username"]
+
+            # Redirect user to home page
+            return redirect("/")
+
+    return render_template("login.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -70,17 +112,14 @@ def register():
             id = db.execute("INSERT INTO users (username, email, hash) VALUES(:username, :email, :password_hash)",
                             username=username, email=email, password_hash=generate_password_hash(password, method='pbkdf2:sha256', salt_length=8))
 
+            # flash('Thanks for registering')
+
+            # Remember which user has logged in
+            session["user_id"] = id
+
             return redirect("/")
 
     return render_template("register.html")
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-
-    # user get to the route via get
-    if request.method == "GET":
-        return render_template("login.html")
 
 
 @app.route("/movie", methods=["GET", "POST"])

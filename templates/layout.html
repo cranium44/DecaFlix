@@ -45,6 +45,30 @@
                         </div>
                     </li>
                 </ul>
+                {% if session.user_id %}
+                <div class="mb-2">
+                    <!-- <a href="/register" class="btn btn-success ml-4 my-2 my-sm-0 submit">SignUp</a> -->
+                    <!-- <a href="/register" class="ml-4 my-2 mr-4 my-sm-0 signup"> <i class="fas fa-users"></i> Hey
+                        {{session.username}}</a> -->
+                    <div class="nav-item dropdown mr-4">
+                        <a class="nav-link dropdown-toggle signup mt-2" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Hey {{session.username}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-globe-africa"></i> Events</a>
+                            <a class="dropdown-item" href="#"><i class="fab fa-discourse"></i> Dashboard</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"><i class="fab fa-envira"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="mb-2">
+                    <!-- <a href="/register" class="btn btn-success ml-4 my-2 my-sm-0 submit">SignUp</a> -->
+                    <a href="/register" class="ml-4 my-2 my-sm-0 signup"> <i class="fas fa-users"></i> SignUp</a>
+                </div>
+                {% endif %}
                 <form action="/movie" method="post" class="form-inline my-2 my-lg-0">
                     <div class="input-icons my-2">
                         <i class="fas fa-search icon"></i>
@@ -52,11 +76,6 @@
                             placeholder="Search for movie.." aria-label="Search" />
                     </div>
                 </form>
-                <div class="mb-2">
-                    <!-- <a href="/register" class="btn btn-success ml-4 my-2 my-sm-0 submit">SignUp</a> -->
-                    <a href="/register" class="ml-4 my-2 my-sm-0 signup"> <i class="fas fa-users"></i> SignUp</a>
-                </div>
-
             </div>
         </nav>
     </header>
