@@ -1,32 +1,32 @@
 import os
-import requests
-import flask.sessions
-import flask
-import mysql.connector
 
-from cs50 import SQL
+import flask
+# import mysql.connector
+
+from sql import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
 from tempfile import mkdtemp
-from cs50 import SQL
+#from cs50 import SQL
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import all, apology, login_required, lookup
-from flask import Flask, flash, jsonify, redirect, render_template, request, session
+from helpers import all, apology, login_required, lookup, user_available
+
 
 app = Flask(__name__)
-
+app.secret_key = 'axaaxxxa'
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 #database connection
-con = mysql.connector.connect(
-   host = "localhost",
-   user = "root",
-   password = "",
-   database = "decaflix",
-   port = 3306
-)
+# con = mysql.connector.connect(
+#    host = "localhost",
+#    user = "root",
+#    password = "",
+#    database = "decaflix",
+#    port = 3306
+# )
 
-db = con.cursor()
+# db = con.cursor()
+
 
 @app.after_request
 def after_request(response):
@@ -39,7 +39,9 @@ def after_request(response):
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-#Session(app)
+Session(app)
+
+db = SQL("sqlite:///decaflix.db")
 
 @app.route('/')
 def index():
@@ -50,18 +52,19 @@ def index():
 @app.route('/login', methods=['GET','POST'])
 def login():
    #clear session
-   #session.clear()
+   session.clear()
    if request.method == "POST":
       #retrieve info from the page
-      username = requests.form.get("username")
-      password = requests.form.get("password")
-      hashed  = generate_password_hash(password)
-      db.execute("select * from databas where username = :username", username)
-      res = db.fetchall()
-      if res[0]['hash'] == hash:
-         session['id'] == res[0]['user_id']
+      email = request.form.get("email")
+      password = request.form.get("password")
+      #hash  = generate_password_hash(password)
+      print(hash)
+      res = db.execute("SELECT id, hash FROM users WHERE email = :email", email=email)
+      print(res)
+      if check_password_hash(res[0]['hash'], password):
+         session["user_id"] == res[0]['id']
          return redirect('/')
-      elif res is None:
+      elif res[0] == []:
          return apology("The user does not exist")
       else:
          return apology("Username and/or password incorrect")
@@ -76,9 +79,7 @@ def register():
       return render_template("register.html")
 
    if request.method == "POST":
-      #forget present user
-      session.clear()
-
+      
       #retrieve information from the form
       name = request.form.get("name")
       email = request.form.get("email")
@@ -91,10 +92,9 @@ def register():
       #run query and add the new user given that the usename exists and passwords match
       if isAvailable:
          if password == confirmation:
-            db.execute("INSERT INTO users(name, email, hash) VALUES(:name, :email, :hash)", name, email, generate_password_hash(password))
-            db.execute("SELECT user_id FROM users WHERE email = :email", email)
-            res = db.fetchall()
-            session['id'] = res[0]['user_id'] #remember current user
+            db.execute("INSERT INTO users(name, email, hash) VALUES(:name, :email, :hash)", name=name, email=email, hash = generate_password_hash(password))
+            res = db.execute("SELECT id FROM users WHERE email = :email", email=email)
+            #session['id'] = res[0]['id'] #remember current user
             return render_template("index.html")
          else:
             return apology("Passwords do not match")
@@ -108,37 +108,6 @@ def register():
 def method_name():
    if request.method == 'GET':
       pass
-
-
-# Configure application
-app = Flask(__name__)
-
-# Ensure templates are auto_reloaded
-app.config["TEMPLATES_AUTO_RELOAD"] = True
-
-#index
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-
-@app.route("/register", methods=["GET", "POST"])
-def register():
-
-    # forget any user_id
-    # session.clear()
-
-    # user get to the route via get
-    if request.method == "GET":
-        return render_template("register.html")
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-
-    # user get to the route via get
-    if request.method == "GET":
-        return render_template("login.html")
 
 
 @app.route("/movie", methods=["GET", "POST"])
