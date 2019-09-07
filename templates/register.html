@@ -9,6 +9,7 @@ Register
     <!-- Modal for Register -->
     <div class="container register-container my-5">
         <div class="col-md-6">
+            {% include "messages.html" %}
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
@@ -23,7 +24,7 @@ Register
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="username" placeholder="Username"
-                                    aria-label="Username" aria-describedby="basic-addon1" required>
+                                    aria-label="Username" aria-describedby="basic-addon1" value="{{username}}" required>
                                 <div class="invalid-feedback">
                                     Please fill in username field.
                                 </div>
@@ -34,7 +35,7 @@ Register
                                             class="fas fa-envelope"></i></span>
                                 </div>
                                 <input type="email" class="form-control" name="email" placeholder="Email"
-                                    aria-label="Email" aria-describedby="basic-addon1" required>
+                                    aria-label="Email" aria-describedby="basic-addon1" value="{{email}}" required>
                                 <div class="invalid-feedback">
                                     Please fill in email field.
                                 </div>
@@ -63,7 +64,8 @@ Register
                                                     class="fas fa-key"></i></span>
                                         </div>
                                         <input type="password" class="form-control" placeholder="Confirm Password"
-                                            aria-label="Password" aria-describedby="basic-addon1" required>
+                                            aria-label="Password" name="confirmPassword" aria-describedby="basic-addon1"
+                                            required>
                                         <div class="invalid-feedback">
                                             Make sure the passwords match.
                                         </div>

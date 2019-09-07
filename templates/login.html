@@ -8,42 +8,46 @@ Login
 <section>
     <!-- Modal for Register -->
     <div class="container login-container my-5">
-        <div class="card login-card">
-            <div class="card-body">
-                <div class="card-title">
-                    <h3 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h3>
-                </div>
-                <div class="card-content">
-                    <form class="needs-validation" novalidate>
-                        <div class="input-group mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+        <div class="col-md-6">
+            {% include "messages.html" %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h3>
+                    </div>
+                    <div class="card-content">
+                        <form class="" action="/login" method="post" novalidate>
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                            class="fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" class="form-control" name="email" placeholder="Email"
+                                    aria-label="Email" aria-describedby="basic-addon1" value="{{email}}" required>
+                                <div class="invalid-feedback">
+                                    Please fill in email field.
+                                </div>
                             </div>
-                            <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email"
-                                aria-describedby="basic-addon1" required>
-                            <div class="invalid-feedback">
-                                Please fill in email field.
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" name="password" placeholder="Password"
+                                    aria-label="Password" aria-describedby="basic-addon1" required>
+                                <div class="invalid-feedback">
+                                    Invalid password.
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-group mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success btn-block">Login</button>
                             </div>
-                            <input type="password" class="form-control" placeholder="Confirm Password"
-                                aria-label="Password" aria-describedby="basic-addon1" required>
-                            <div class="invalid-feedback">
-                                Invalid password.
+                            <div class="ml-3">
+                                <p class="lead text-muted text-center">Don't Have an Account? <a
+                                        href="/register">Register</a>
+                                </p>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success btn-block">Login</button>
-                        </div>
-                        <div class="ml-3">
-                            <p class="lead text-muted text-center">Don't Have an Account? <a
-                                    href="/register">Register</a>
-                            </p>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
