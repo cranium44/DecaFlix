@@ -1,22 +1,24 @@
-import requests
-import mysql.connector
+# import requests
+# import mysql.connector
 import json
 import http.client
 
 import os
-import requests
+# import requests
 import urllib.parse
 
 from flask import redirect, render_template, request, session
+from sql import SQL
+# con = mysql.connector.connect(
+#    host = "localhost",
+#    user = "root",
+#    password = "",
+#    database = "decaflix",
+#    port = 3306
+# )
+# db = con.cursor()
+db = SQL("sqlite:///decaflix.db")
 
-con = mysql.connector.connect(
-   host = "localhost",
-   user = "root",
-   password = "",
-   database = "decaflix",
-   port = 3306
-)
-db = con.cursor()
 
 def login_required(f):
     """
@@ -42,7 +44,7 @@ def all():
     return data
 
 def apology(message):
-    return render_template("apology.html", message)
+    return render_template("apology.html", message=message)
 
 def lookup(title):
     """Look up title for movie"""
@@ -96,10 +98,10 @@ def lookup(title):
 #     pass
 
 
-# def user_available(username):
-#     isAvailable = False
-#     res = con.execute(
-#         "select * from users where username = :username", username)
-#     if res is None:
-#         isAvailable = True
-#     return isAvailable
+def user_available(email):
+    isAvailable = False 
+    res =  db.execute("SELECT * FROM users WHERE email = :email", email=email)
+    print(res)
+    if res[0] ==[]:
+        isAvailable = True
+    return isAvailable
