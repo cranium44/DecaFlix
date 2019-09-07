@@ -1,31 +1,20 @@
 import os
-
 import flask
 # import mysql.connector
 
+from flask_session.__init__ import Session
 from sql import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
 from tempfile import mkdtemp
-#from cs50 import SQL
+#from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import all, apology, login_required, lookup, user_available
 
 
 app = Flask(__name__)
-app.secret_key = 'axaaxxxa'
+# app.secret_key = 'axaaxxxa'
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-
-#database connection
-# con = mysql.connector.connect(
-#    host = "localhost",
-#    user = "root",
-#    password = "",
-#    database = "decaflix",
-#    port = 3306
-# )
-
-# db = con.cursor()
 
 
 @app.after_request
@@ -39,7 +28,7 @@ def after_request(response):
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+
 
 db = SQL("sqlite:///decaflix.db")
 
@@ -48,6 +37,8 @@ def index():
    api =""
    catalogue = all()
    return render_template("index.html", catalogue=catalogue) #
+
+
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -71,6 +62,7 @@ def login():
 
    if request.method == "GET":
       return render_template("login.html")
+
 
 
 @app.route('/register', methods=['GET', 'POST'])
