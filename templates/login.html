@@ -8,34 +8,72 @@ Login
 <section>
     <!-- Modal for Register -->
     <div class="container login-container my-5">
-        <div class="card login-card">
-            <div class="card-body">
-                <div class="card-title">
-                    <h3 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h3>
-                </div>
-                <div class="card-content">
-                    <form>
-                        <div class="form-group">
-                            <label for="inputPassword4">Email</label>
-                            <input type="email" class="form-control" id="inputPassword4" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword4">Passowrd</label>
-                            <input type="password" class="form-control" id="inputEmail4" placeholder="password">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success btn-block">Login</button>
-                        </div>
-                        <div class="ml-3">
-                            <p class="lead text-muted">Don't Have an Account? <a href="/register">Register</a>
-                            </p>
-                        </div>
-                    </form>
+        <div class="col-md-6">
+            {% include "messages.html" %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h3>
+                    </div>
+                    <div class="card-content">
+                        <form class="" action="/login" method="post" novalidate>
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i
+                                            class="fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" class="form-control" name="email" placeholder="Email"
+                                    aria-label="Email" aria-describedby="basic-addon1" value="{{email}}" required>
+                                <div class="invalid-feedback">
+                                    Please fill in email field.
+                                </div>
+                            </div>
+                            <div class="input-group mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" name="password" placeholder="Password"
+                                    aria-label="Password" aria-describedby="basic-addon1" required>
+                                <div class="invalid-feedback">
+                                    Invalid password.
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success btn-block">Login</button>
+                            </div>
+                            <div class="ml-3">
+                                <p class="lead text-muted text-center">Don't Have an Account? <a
+                                        href="/register">Register</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+{% endblock %}
+
+{% block script %}
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 {% endblock %}

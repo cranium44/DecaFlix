@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link href="../static/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/style.css" rel="stylesheet">
+    <link href="{{  url_for('static', filename='style.css')}}" rel="stylesheet">
     {% block style %}{% endblock %}
 </head>
 
@@ -19,8 +19,9 @@
     <header>
         <nav class="navbar navbar-expand-lg fixed-buttom navbar-light border-bottom">
             <a href="/"><img src="../static/images/logo-light.png" width="112" height="28" /></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
-                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" style="background-color: #ffffff !important" type="button"
+                data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -45,14 +46,37 @@
                         </div>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search for movie.."
-                        aria-label="Search" />
-                    <button class="submit btn btn-outline-success my-2 my-sm-0" type="submit">
-                        Search
-                    </button>
+                {% if session.user_id %}
+                <div class="">
+                    <!-- <a href="/register" class="btn btn-success ml-4 my-2 my-sm-0 submit">SignUp</a> -->
+                    <!-- <a href="/register" class="ml-4 my-2 mr-4 my-sm-0 signup"> <i class="fas fa-users"></i> Hey
+                        {{session.username}}</a> -->
+                    <div class="nav-item dropdown mr-4 mt-2">
+                        <a class="nav-link dropdown-toggle signup" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-user"></i> Hey {{session.username}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#"><i class="fas fa-globe-africa"></i> Events</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="nav-item mr-4 mt-2 ">
+                    <!-- <a href="/register" class="btn btn-success ml-4 my-2 my-sm-0 submit">SignUp</a> -->
+                    <a href="/register" class="ml-4 my-2 my-sm-0 signup"> <i class="fas fa-users"></i> SignUp</a>
+                </div>
+                {% endif %}
+                <form action="/movie" method="post" class="form-inline my-lg-0">
+                    <div class="input-icons">
+                        <i class="fas fa-search icon"></i>
+                        <input class="input-field form-control mr-sm-2 search" type="search" name="title"
+                            placeholder="Search for movie.." aria-label="Search" />
+                    </div>
                 </form>
-                <a href="/register" class="btn btn-success ml-4 my-2 my-sm-0 submit">SignUp</a>
             </div>
         </nav>
     </header>
@@ -70,6 +94,7 @@
                 </p>
             </div>
         </div>
+
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -1,122 +1,106 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
 
-<html lang="en">
+{% block title %}
+{{lookup_title["title"]}}
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link href="../static/styles.css" rel="stylesheet">
-</head>
+{% block style %}
+<style>
+    .rate {
+        border: 1px solid white;
+        border-radius: 47%;
+        padding: 9px;
+    }
 
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg fixed-buttom navbar-light border-bottom">
-            <a href="./index.html"><img src="../static/images/logo-light.png" width="112" height="28" /></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
-                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    .rate:hover {
+        background-color: #ffffff;
+        color: #1d1d1d;
+    }
 
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link ml-5" href=""><i class="fas fa-video"></i> Movies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=""><i class="far fa-eye"></i> Tv Shows</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            The MovieDB
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"><i class="fas fa-globe-africa"></i> Shows</a>
-                            <a class="dropdown-item" href="#"><i class="fab fa-discourse"></i> Discover</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="fab fa-envira"></i> Gallary</a>
-                        </div>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search for movie.."
-                        aria-label="Search" />
-                    <button class="submit btn btn-outline-success my-2 my-sm-0" type="submit">
-                        Search
-                    </button>
-                </form>
-                <a href="./register.html" class="btn btn-success ml-4 my-2 my-sm-0 submit">SignUp</a>
+    .play {
+        font-size: 15px;
+        color: #ffffff;
+    }
+
+    .play-a {
+        color: #ffffff;
+    }
+
+    .frame {
+        width: 100%;
+        height: 900px;
+        ;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+
+<section class="content">
+    <div class="container">
+        <div class="single row">
+            <div class="col-md-4">
+                <a href="{{lookup_title["website"]}}"><img src="{{lookup_title["poster"]}}" class="img-fluid"
+                        alt="Responsive image"></a>
             </div>
-        </nav>
-    </header>
 
-    <section class="content">
-        <div class="container">
-            <div class="single row">
-                <div class="col-md-4">
-                    <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/fapXd3v9qTcNBTm39ZC4KUVQDNf.jpg"
-                        class="img-fluid" alt="Responsive image">
+            <div class="col-md-8">
+                <h1>{{lookup_title["title"]}} <span class="text-muted year">({{lookup_title["year"]}})</span></h1>
+                <a class="play-a" href="{{lookup_title["website"]}}" target="_blank"><i
+                        class="play far fa-play-circle"></i>
+                    play trailer</a>
+
+                <p class="text-muted my-4">Realeased: {{lookup_title["released"]}}</p>
+
+                <div>
+                    <span class="text-muted tooltiptext"> <i class="rate fas fa-star"></i> Rating</span>
                 </div>
 
-                <div class="col-md-8">
-                    <h1>Angels Has Fallen <span class="text-muted year">(2019)</span></h1>
-                    <div class="text my-4">
-                        <h5>Overview</h5>
-                        <p class="lead lead-text">Secret Service Agent Mike Banning is framed for the attempted
-                            assassination of
-                            the President and must evade his own agency and the FBI as he tries to uncover the real
-                            threat.</p>
-                    </div>
+                <div class="text my-4">
+                    <h5>Overview</h5>
+                    <p class="lead lead-text">{{lookup_title["plot"]}}</p>
 
-                    <h5 class="">Featured Crew</h5>
-                    <div class="row">
-
-                        <div class="col-md-4">
-                            <h6 class="lead">Director, Screenplay</h6>
-                            <p class="lead-text">Ric Roman Waugh</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h6 class="lead">Director, Screenplay</h6>
-                            <p class="lead-text">Matt Cook, Screenplay</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h6 class="lead">Screenplay</h6>
-                            <p class="lead-text">Robert Mark Kamen</p>
-                        </div>
-                    </div>
                 </div>
 
+                <h5 class="">Featured Crew</h5>
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <h6 class="lead">Director</h6>
+                        <p class="lead-text">{{lookup_title["director"]}}</p>
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <h6 class="lead">Director, Screenplay</h6>
+                        <p class="lead-text">Matt Cook, Screenplay</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="lead">Screenplay</h6>
+                        <p class="lead-text">Robert Mark Kamen</p>
+                    </div> -->
+                </div>
+                <h5>Actors</h5>
+                <div>
+                    <p class="lead">{{lookup_title["actors"]}}</p>
+                </div>
+                <h5>Writer</h5>
+                <div>
+                    <p>{{lookup_title["writer"]}}</p>
+                </div>
             </div>
+
         </div>
 
-    </section>
+        <!-- <iframe class="frame" src="{{lookup_title["website"]}}"></iframe>
 
-    <footer class="footer my-4 text-center">
-        <div class="container">
-            <div class="">
-                <p>
-                    <strong>Design</strong> by <a href="http://github.com/flinchy">Decaflix 😍</a>. The source code is
-                    licensed. The website content is licensed CC ANS 4.0.
-                </p>
-            </div>
-        </div>
-    </footer>
+        <iframe id="frame2" class="frame" src=""></iframe> -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-</body>
+    </div>
 
-</html>
+</section>
+
+{% endblock %}
+
+{% block script %}
+
+
+{% endblock %}
