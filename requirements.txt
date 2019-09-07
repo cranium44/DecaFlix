@@ -4,3 +4,5 @@ mysql.connector
 cs50
 Flask
 requests
+Flask-Session
+

@@ -1,32 +1,23 @@
-# import requests
-# import mysql.connector
+
 import json
 import http.client
 
 import os
-# import requests
 import urllib.parse
 
+from functools import wraps
 from flask import redirect, render_template, request, session
 from sql import SQL
-# con = mysql.connector.connect(
-#    host = "localhost",
-#    user = "root",
-#    password = "",
-#    database = "decaflix",
-#    port = 3306
-# )
-# db = con.cursor()
+
+
 db = SQL("sqlite:///decaflix.db")
+ 
 
 
 def login_required(f):
-    """
-    Decorate routes to require login.
+    """Decorate routes to require login"""
 
-    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/
-    """
-    
+    @wraps(f)
     def decorated_function(*args, **kwargs):
         if session.get("user_id") is None:
             return redirect("/login")
@@ -34,7 +25,7 @@ def login_required(f):
     return decorated_function
 
 def all():
-# https://api.themoviedb.org/3/movie/550?api_key=28dda9f76d76f128b47831768bc9a103    COMPLETE_API = ""
+# https://api.themoviedb.org/3/movie/550?api_key=28dda9f76d76f128b47831768bc9a103    
 
     conn = http.client.HTTPSConnection("api.themoviedb.org")
     payload = "{}"
