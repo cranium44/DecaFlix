@@ -44,7 +44,7 @@ def login():
         elif not request.form.get("password"):
             errors.append({"msg": "Password field must not be empty"})
 
-        elif len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+        elif len(rows) != 1 or not check_password_hash(rows[0]["password"], request.form.get("password")):
             errors.append({"msg": "invalid username and/or password"})
 
         if len(errors) > 0:
@@ -139,7 +139,7 @@ def movie():
 
     if request.method == "POST":
         title = request.form.get("title")
-
+        # title = "fast+furious"
         lookup_title = lookup(title)
         return render_template("single.html", lookup_title=lookup_title)
 

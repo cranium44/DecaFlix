@@ -7,13 +7,13 @@
 {% block style %}
 <style>
     .rate {
-        border: 1px solid white;
+        border: 1px solid #ccc;
         border-radius: 47%;
         padding: 9px;
     }
 
     .rate:hover {
-        background-color: #ffffff;
+        background-color: #fff;
         color: #1d1d1d;
     }
 
@@ -23,7 +23,11 @@
     }
 
     .play-a {
-        color: #ffffff;
+        color: #ccc;
+    }
+
+    .play-a:hover {
+        color: #fff;
     }
 
     .frame {
@@ -53,7 +57,11 @@
                 <p class="text-muted my-4">Realeased: {{lookup_title["released"]}}</p>
 
                 <div>
-                    <span class="text-muted tooltiptext"> <i class="rate fas fa-star"></i> Rating</span>
+                    <span class="text-muted tooltiptext"> <i class="rate fas fa-star mr-2"></i> imdbRating
+                        {{lookup_title["imdbRating"]}}</span>
+
+                    <span class="text-muted tooltiptext"> <i class="fab fa-adn ml-3"></i></i> BoxOffice
+                        {{lookup_title["boxOffice"]}}</span>
                 </div>
 
                 <div class="text my-4">
@@ -62,26 +70,21 @@
 
                 </div>
 
-                <h5 class="">Featured Crew</h5>
                 <div class="row">
 
                     <div class="col-md-4">
+                        <h5 class="">Featured Crew</h5>
                         <h6 class="lead">Director</h6>
                         <p class="lead-text">{{lookup_title["director"]}}</p>
                     </div>
-                    <!-- <div class="col-md-4">
-                        <h6 class="lead">Director, Screenplay</h6>
-                        <p class="lead-text">Matt Cook, Screenplay</p>
+
+                    <div class="col-md-8">
+                        <h5>Actors</h5>
+                        <p class="lead">{{lookup_title["actors"]}}</p>
                     </div>
-                    <div class="col-md-4">
-                        <h6 class="lead">Screenplay</h6>
-                        <p class="lead-text">Robert Mark Kamen</p>
-                    </div> -->
+
                 </div>
-                <h5>Actors</h5>
-                <div>
-                    <p class="lead">{{lookup_title["actors"]}}</p>
-                </div>
+
                 <h5>Writer</h5>
                 <div>
                     <p>{{lookup_title["writer"]}}</p>

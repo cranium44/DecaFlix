@@ -16,7 +16,7 @@ html {
 }
 
 div.dropdown-menu a:hover {
-  color: #fff;
+  color: #aec643;
 }
 
 .register-container {
@@ -76,11 +76,11 @@ a:hover {
 
 .single {
   padding: 30px;
-  color: #ffffff;
+  color: #ccc;
 }
 
 .lead-text {
-  color: #ffffff;
+  color: #ccc;
   font-size: 18px;
 }
 
