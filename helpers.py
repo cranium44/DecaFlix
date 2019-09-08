@@ -29,9 +29,10 @@ def all():
 
     conn = http.client.HTTPSConnection("api.themoviedb.org")
     payload = "{}"
-    conn.request("GET", "/3/movie/%7Bmovie_id%7D?language=en-US&api_key=28dda9f76d76f128b47831768bc9a103%3C%3Capi_key%3E%3E", payload)
+    conn.request("GET", "/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103", payload)
     res = conn.getresponse()
     data = res.read()
+    conn.close()
     return data
 
 def apology(message):
