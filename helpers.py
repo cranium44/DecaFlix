@@ -45,7 +45,7 @@ def lookup(title):
     try:
         api_key = os.environ.get("API_KEY")
         response = requests.get(
-            f"http://www.omdbapi.com/?t={title}&apikey=ced7be9a")
+            f"http://www.omdbapi.com/?s={title}&apikey=ced7be9a")  # http://www.omdbapi.com/?s=Batman&apikey=ced7be9a
         response.raise_for_status()
     except requests.RequestException:
         return None
@@ -54,24 +54,24 @@ def lookup(title):
     try:
         movie = response.json()
         return {
-            "title": movie["Title"],
-            "year": movie["Year"],
-            "rated": movie["Rated"],
-            "released": movie["Released"],
-            "runtime": movie["Runtime"],
-            "genre": movie["Genre"],
-            "director": movie["Director"],
-            "writer": movie["Writer"],
-            "actors": movie["Actors"],
-            "plot": movie["Plot"],
-            "language": movie["Language"],
-            "poster": movie["Poster"],
-            "imdbRating": movie["imdbRating"],
-            "imdbID": movie["imdbID"],
-            "DVD": movie["DVD"],
-            "boxOffice": movie["BoxOffice"],
-            "production": movie["Production"],
-            "website": movie["Website"],
+            "search": movie["Search"],
+            # "year": movie["Year"],
+            # "rated": movie["Rated"],
+            # "released": movie["Released"],
+            # "runtime": movie["Runtime"],
+            # "genre": movie["Genre"],
+            # "director": movie["Director"],
+            # "writer": movie["Writer"],
+            # "actors": movie["Actors"],
+            # "plot": movie["Plot"],
+            # "language": movie["Language"],
+            # "poster": movie["Poster"],
+            # "imdbRating": movie["imdbRating"],
+            # "imdbID": movie["imdbID"],
+            # "DVD": movie["DVD"],
+            # "boxOffice": movie["BoxOffice"],
+            # "production": movie["Production"],
+            # "website": movie["Website"],
 
         }
 
