@@ -139,9 +139,11 @@ def movie():
 
     if request.method == "POST":
         title = request.form.get("title")
-        # title = "fast+furious"
         lookup_title = lookup(title)
-        return render_template("single.html", lookup_title=lookup_title)
+        print(lookup_title)
+
+        # return render_template("movieBySearch.html", lookup_title=lookup_title)
+        # return render_template("movieBySearch.html")
 
     return render_template("index.html")
 
