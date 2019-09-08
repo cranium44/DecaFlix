@@ -14,7 +14,7 @@ app.secret_key = os.urandom(24)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # configure cs50 Library to use SQLite database
-db = SQL("sqlite:///decaflix1.db")
+db = SQL("sqlite:///decaflix.db")
 
 # index
 @app.route("/")
@@ -55,7 +55,7 @@ def login():
 
             # Remember which user has logged in
             session["user_id"] = rows[0]["id"]
-            session["username"] = rows[0]["username"]
+            session["username"] = rows[0]["email"]
 
             # Redirect user to home page
             return redirect("/")
@@ -84,26 +84,26 @@ def register():
     if request.method == "POST":
 
         """Register user"""
-        username = request.form.get("username").casefold()
+        name = request.form.get("name").casefold()
         email = request.form.get("email")
         password = request.form.get("password")
-        confirm_password = request.form.get("confirmPassword")
+        confirm_password = request.form.get("confirmation")
 
         # validate input before saving to the database
         errors = []
 
         # query database for username to know if it already exists
         rows = db.execute(
-            "SELECT * FROM users WHERE username = :username", username=username)
+            "SELECT * FROM users WHERE email = :email", email=email)
 
-        if not username and not email and not password:
+        if not name and not email and not password:
             errors.append({"msg": "Please fill in all fields"})
 
         elif len(rows) > 0:
-            errors.append({"msg": "Username already exist"})
+            errors.append({"msg": "Email already exist"})
 
-        elif not username:
-            errors.append({"msg": "Username field must not be empty"})
+        elif not name:
+            errors.append({"msg": "Name field must not be empty"})
 
         elif not email:
             errors.append({"msg": "Email field must not be empty"})
@@ -115,19 +115,19 @@ def register():
             errors.append({"msg": "Passwords do not match"})
 
         if len(errors) > 0:
-            return render_template("register.html", errors=errors, username=username, email=email, password=password)
+            return render_template("register.html", errors=errors, name=name, email=email, password=password)
 
         else:
             # validation passed
 
-            id = db.execute("INSERT INTO users (username, email, hash) VALUES(:username, :email, :password_hash)",
-                            username=username, email=email, password_hash=generate_password_hash(password, method='pbkdf2:sha256', salt_length=8))
+            id = db.execute("INSERT INTO users (name, email, hash) VALUES(:name, :email, :hash)",
+                            name=name, email=email, hash=generate_password_hash(password, method='pbkdf2:sha256', salt_length=8))
 
             # flash('Thanks for registering')
 
             # Remember which user has logged in
             session["user_id"] = id
-            session["username"] = username
+            session["username"] = email
 
             return redirect("/")
 
