@@ -120,8 +120,8 @@ def register():
         else:
             # validation passed
 
-            id = db.execute("INSERT INTO users (username, email, hash) VALUES(:username, :email, :password_hash)",
-                            username=username, email=email, password_hash=generate_password_hash(password, method='pbkdf2:sha256', salt_length=8))
+            id = db.execute("INSERT INTO users (username, email, password) VALUES(:username, :email, :password)",
+                            username=username, email=email, password=generate_password_hash(password, method='pbkdf2:sha256', salt_length=8))
 
             # flash('Thanks for registering')
 
@@ -144,3 +144,8 @@ def movie():
         return render_template("single.html", lookup_title=lookup_title)
 
     return render_template("index.html")
+
+
+@app.route("/dashboard", methods=["GET"])
+def dashboard():
+    return render_template("dashboard.html")

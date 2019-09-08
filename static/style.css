@@ -8,15 +8,15 @@ html {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: #ffffff;
+  color: #ccc;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-  color: #aec643;
+  color: #fff;
 }
 
 div.dropdown-menu a:hover {
-  color: #aec643;
+  color: #fff;
 }
 
 .register-container {
@@ -120,9 +120,75 @@ a:hover {
 }
 
 .signup {
-  color: #ffffff;
+  color: #ccc;
 }
 
 .signup:hover {
-  color: #aec643;
+  color: #fff;
+}
+
+
+
+.top {
+  background-color: #081C24;
+}
+
+.input-search {
+  width: 100%;
+  height: 40px;
+  display: block;
+  text-align: center;
+}
+
+.input-search::placeholder {
+  text-align: center;
+}
+
+.bottom {
+  background: #FF1493;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  filter: brightness(75%)
+}
+
+/* .round-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: green;
+} */
+
+.profile-pic {
+  width: 140px;
+  border-radius: 50%;
+  margin-left: 3rem;
+}
+
+.user-name {
+  color: white;
+  margin-left: 2rem;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+}
+
+.user-p {
+  color: #B9BEB3;
+  color: white;
+  margin-top: 5rem;
+  margin-left: -8rem;
+  margin-right: auto;
+  font-size: 0.9rem;
+}
+
+.balance {
+  margin-right: 2rem;
+  color: white;
+  margin-bottom: 9rem;
+}
+
+.no-movies {
+  color: white;
+  margin-right: 25rem;
+  margin-top: 8rem;
 }
