@@ -10,7 +10,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <!-- <link href="../static/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
     <link href="{{  url_for('static', filename='style.css')}}" rel="stylesheet">
     {% block style %}{% endblock %}
 </head>
@@ -45,7 +45,7 @@
                     <div class="nav-item dropdown mr-4 mt-2">
                         <a class="nav-link dropdown-toggle signup" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="far fa-user"></i> Hey {{session.username}}
+                            <i class="far fa-user"></i> Hey {{session.name}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#"><i class="fas fa-globe-africa"></i> Events</a>

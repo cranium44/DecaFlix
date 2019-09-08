@@ -1,17 +1,14 @@
-
+import os
 import json
 import http.client
 import requests
-import os
-import urllib.parse
-
 from functools import wraps
 from flask import redirect, render_template, request, session
-from sql import SQL
+# import urllib.parse
+# from sql import SQL
 
 
-db = SQL("sqlite:///decaflix.db")
- 
+# db = SQL("sqlite:///decaflix.db")
 
 
 def login_required(f):
@@ -24,19 +21,23 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+
 def all():
-# https://api.themoviedb.org/3/movie/550?api_key=28dda9f76d76f128b47831768bc9a103    
+    # https://api.themoviedb.org/3/movie/550?api_key=28dda9f76d76f128b47831768bc9a103
 
     conn = http.client.HTTPSConnection("api.themoviedb.org")
     payload = "{}"
-    conn.request("GET", "/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103", payload)
+    conn.request(
+        "GET", "/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103", payload)
     res = conn.getresponse()
     data = res.read()
     conn.close()
     return data
 
+
 def apology(message):
     return render_template("apology.html", message=message)
+
 
 def lookup(title):
     """Look up title for movie"""
@@ -90,10 +91,10 @@ def lookup(title):
 #     pass
 
 
-def user_available(email):
-    isAvailable = False 
-    res =  db.execute("SELECT * FROM users WHERE email = :email", email=email)
-    print(res)
-    if res[0] ==[]:
-        isAvailable = True
-    return isAvailable
+# def user_available(email):
+#     isAvailable = False
+#     res = db.execute("SELECT * FROM users WHERE email = :email", email=email)
+#     print(res)
+#     if res[0] == []:
+#         isAvailable = True
+#     return isAvailable
