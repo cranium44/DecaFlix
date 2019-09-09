@@ -23,19 +23,86 @@ def login_required(f):
 
 
 def all():
+
     # https://api.themoviedb.org/3/movie/550?api_key=28dda9f76d76f128b47831768bc9a103
 
-    conn = http.client.HTTPSConnection("api.themoviedb.org")
-    payload = "{}"
-    conn.request(
-        "GET", "/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103", payload)
-    res = conn.getresponse()
-    data = res.read()
-    conn.close()
-    return data
+    # conn = http.client.HTTPSConnection("api.themoviedb.org")
+    # payload = "{}"
+    # conn.request(
+    #     "GET", "/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103", payload)
+    # res = conn.getresponse()
+    # data = res.read()
+    # conn.close()
+    # return data
+
+    try:
+        api_key = os.environ.get("API_KEY")
+        response = requests.get(
+            f"http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103")  # http://www.omdbapi.com/?s=Batman&apikey=ced7be9a
+        response.raise_for_status()
+    except requests.RequestException:
+        return None
+
+    # parse response
+    try:
+        movies = response.json()
+        popular = movies["results"]
+        pop_list = []
+        for i in range(len(popular)):
+            pop = {"popularity": popular[i]["popularity"],
+                   "poster_path": popular[i]["poster_path"],
+                   "id": popular[i]["id"],
+                   "title": popular[i]["title"],
+                   "overview": popular[i]["overview"],
+                   "rating": popular[i]["vote_average"],
+                   "date": popular[i]["release_date"]}
+            pop_list.append(pop)
+        return pop_list
+
+        # return popular
+        # return popular[0]["popularity"]
+        # return {
+        #     "popular": movies["results"],
+        #     # "year": movie["Year"],
+        #     # "rated": movie["Rated"],
+        #     # "released": movie["Released"],
+        #     # "runtime": movie["Runtime"],
+        #     # "genre": movie["Genre"],
+        #     # "director": movie["Director"],
+        #     # "writer": movie["Writer"],
+        #     # "actors": movie["Actors"],
+        #     # "plot": movie["Plot"],
+        #     # "language": movie["Language"],
+        #     # "poster": movie["Poster"],
+        #     # "imdbRating": movie["imdbRating"],
+        #     # "imdbID": movie["imdbID"],
+        #     # "DVD": movie["DVD"],
+        #     # "boxOffice": movie["BoxOffice"],
+        #     # "production": movie["Production"],
+        #     # "website": movie["Website"],
+
+        # }
+
+    except (KeyError, TypeError, ValueError):
+        return None
+    # try:
+    #     api_key = os.environ.get("API_KEY")
+    #     response = requests.get(
+    #         f"api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103")
+    #     response.raise_for_status()
+    # except requests.RequestException:
+    #     return None
+
+    # try:
+    #     all_movie = response.json()
+    #     return all_movie
+
+    # except (KeyError, TypeError, ValueError):
+    #     return None
 
 
 def apology(message):
+
     return render_template("apology.html", message=message)
 
 

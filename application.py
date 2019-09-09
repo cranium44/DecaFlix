@@ -19,9 +19,9 @@ db = SQL("sqlite:///decaflix1.db")
 # index
 @app.route("/")
 def index():
-    # movies = all()
-    # print(movies)
-    return render_template("index.html")
+    movies = all()
+
+    return render_template("index.html", movies=movies)
 
 
 @app.route("/login", methods=["GET", "POST"])
