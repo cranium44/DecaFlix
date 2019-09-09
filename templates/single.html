@@ -49,7 +49,8 @@
             </div>
             
             <div class="col-md-8">
-                <h1>{{lookup_title["title"]}} <span class="text-muted year">({{lookup_title["year"]}})</span></h1>
+                <h1 id="title">{{lookup_title["title"]}} <span class="text-muted year">({{lookup_title["year"]}})</span></h1>
+                <span id="id" style="display: none;">{{lookup_title["id"]}}</span>
                 <a class="play-a" href="{{lookup_title["website"]}}" target="_blank"><i
                         class="play far fa-play-circle"></i>
                     play trailer</a>
@@ -57,7 +58,7 @@
                 <p class="text-muted my-4">Realeased: {{lookup_title["released"]}}</p>
 
                 <div>
-                    <span class="text-muted tooltiptext"> <i class="rate fas fa-star mr-2"></i> imdbRating
+                    <span class="text-muted tooltiptext" id="rating"> <i class="rate fas fa-star mr-2"></i> imdbRating
                         {{lookup_title["imdbRating"]}}</span>
 
                     <span class="text-muted tooltiptext"> <i class="fab fa-adn ml-3"></i></i> BoxOffice
@@ -104,10 +105,13 @@
 {% block script %}
 <script>
     var button = document.getElementById("addMovie");
+    var id = document.getElementById('id');
+    var title = document.getElementById('title');
+    var rating = document.getElementById('rating');
     var data = {
-        'id': {{lookup_title["imdbID"]}},
-        'title': {{lookup_title["title"]}},
-        'rating': {{lookup_title["rating"]}}
+        'id': id.textContent,
+        'title': title.textContent,
+        'rating': rating.textContent
     };
 
     button.addEventListener('click', function(){

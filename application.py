@@ -1,6 +1,6 @@
 import os
 
-from cs50 import SQL
+from sql import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
 from helpers import lookup, login_required, all
 from werkzeug.security import check_password_hash, generate_password_hash
