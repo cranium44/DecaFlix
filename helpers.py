@@ -5,7 +5,7 @@ import requests
 from functools import wraps
 from flask import redirect, render_template, request, session
 # import urllib.parse
-# from sql import SQL
+from sql import SQL
 
 
 db = SQL("sqlite:///decaflix.db")
@@ -43,7 +43,7 @@ def all():
         pop_list = []
         for i in range(len(popular)):
             pop = {"popularity": popular[i]["popularity"],
-                   "poster_path": popular[i]["poster_path"],
+                   "poster_path": base_url + sizes[6] + popular[i]["poster_path"],
                    "id": popular[i]["id"],
                    "title": popular[i]["title"],
                    "overview": popular[i]["overview"],
@@ -51,24 +51,8 @@ def all():
                    "date": popular[i]["release_date"]}
             pop_list.append(pop)
         return pop_list
-
-
     except (KeyError, TypeError, ValueError):
         return None
-    # try:
-    #     api_key = os.environ.get("API_KEY")
-    #     response = requests.get(
-    #         f"api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103")
-    #     response.raise_for_status()
-    # except requests.RequestException:
-    #     return None
-
-    # try:
-    #     all_movie = response.json()
-    #     return all_movie
-
-    # except (KeyError, TypeError, ValueError):
-    #     return None
 
 
 def apology(message):

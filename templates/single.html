@@ -113,16 +113,12 @@
         'title': title.textContent,
         'rating': rating.textContent
     };
-
+    console.log(data);
     button.addEventListener('click', function(){
-        console.log(data);
         alert("clicked");
-        $.ajax({
-            method:'POST',
-            url:`/add_movie?q=${data}`,
-            success: function(res){
-                console.log(res);
-            }
+        $.post({
+            url:`/add_movie?q=`,
+            data
         });
     });
 </script>
