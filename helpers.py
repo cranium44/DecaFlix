@@ -76,7 +76,7 @@ def lookup(title):
     try:
         movie = response.json()
         return {
-            # "search": movie["Search"],
+            "title": movie["Title"],
             "year": movie["Year"],
             "rated": movie["Rated"],
             "released": movie["Released"],

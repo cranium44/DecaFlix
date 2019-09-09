@@ -148,9 +148,16 @@ def movie():
 
 @app.route('/add_movie', methods=['POST'])
 def add_movie():
-    data = request.args.get("q")
-    print(data)
-    # db.execute("INSERT INTO collection(id, title, rating, )")
+    # data = request.args.get("q")
+    data = None
+    if request.method == 'POST':
+        data = request.get_json()
+        id = data["id"]
+        title = data["title"]
+        rating = data["rating"]
+        user_id = session["user_id"]
+        db.execute("INSERT INTO collection(id, user_id, title, rating) VALUES (:id, :user_id, :title, :rating)", id = id, user_id=user_id, title=title, rating=rating)
+        return redirect("/collection")
 
 
 @app.route('/collection', methods=['GET'])
