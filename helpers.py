@@ -11,7 +11,8 @@ from sql import SQL
 
 
 db = SQL("sqlite:///decaflix.db")
- 
+base_url = "https://image.tmdb.org/t/p/"
+sizes = ["w92","w154","w185","w342","w500","w780","original"]
 
 
 def login_required(f):

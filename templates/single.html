@@ -43,7 +43,7 @@
                 <a href="{{lookup_title["website"]}}"><img src="{{lookup_title["poster"]}}" class="img-fluid"
                         alt="Responsive image"></a>
             </div>
-
+            
             <div class="col-md-8">
                 <h1>{{lookup_title["title"]}} <span class="text-muted year">({{lookup_title["year"]}})</span></h1>
                 <a class="play-a" href="{{lookup_title["website"]}}" target="_blank"><i
@@ -69,14 +69,6 @@
                         <h6 class="lead">Director</h6>
                         <p class="lead-text">{{lookup_title["director"]}}</p>
                     </div>
-                    <!-- <div class="col-md-4">
-                        <h6 class="lead">Director, Screenplay</h6>
-                        <p class="lead-text">Matt Cook, Screenplay</p>
-                    </div>
-                    <div class="col-md-4">
-                        <h6 class="lead">Screenplay</h6>
-                        <p class="lead-text">Robert Mark Kamen</p>
-                    </div> -->
                 </div>
                 <h5>Actors</h5>
                 <div>
@@ -89,11 +81,9 @@
             </div>
 
         </div>
-
-        <!-- <iframe class="frame" src="{{lookup_title["website"]}}"></iframe>
-
-        <iframe id="frame2" class="frame" src=""></iframe> -->
-
+        <div>
+            <button class="btn btn-sm btn-success" id="addMovie"><i class="fa fa-plus" aria-hidden="true"></i> Add Movie</button>
+        </div>
     </div>
 
 </section>
@@ -101,6 +91,25 @@
 {% endblock %}
 
 {% block script %}
+<script>
+    var button = document.getElementById("addMovie");
+    var data = {
+        'id': {{lookup_title["imdbID"]}},
+        'title': {{lookup_title["title"]}},
+        'rating': {{lookup_title["rating"]}}
+    };
 
+    button.addEventListener('click', function(){
+        console.log(data);
+        alert("clicked");
+        $.ajax({
+            method:'POST',
+            url:`/add_movie?q=${data}`,
+            success: function(res){
+                console.log(res);
+            }
+        });
+    });
+</script>
 
 {% endblock %}

@@ -20,8 +20,7 @@ db = SQL("sqlite:///decaflix.db")
 @app.route("/")
 def index():
     movies = all()
-    print(movies)
-    return render_template("index.html")
+    return render_template("index.html", movies=movies)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -146,3 +145,14 @@ def movie():
         return render_template("single.html", lookup_title=lookup_title)
 
     return render_template("index.html")
+
+@app.route('/add_movie', methods=['POST'])
+def add_movie():
+    data = request.args.get("q")
+    print(data)
+    # db.execute("INSERT INTO collection(id, title, rating, )")
+
+
+@app.route('/collection', methods=['GET'])
+def collection():
+   return render_template("collection.html")
