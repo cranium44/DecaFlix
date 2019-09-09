@@ -59,46 +59,8 @@ def all():
             pop_list.append(pop)
         return pop_list
 
-        # return popular
-        # return popular[0]["popularity"]
-        # return {
-        #     "popular": movies["results"],
-        #     # "year": movie["Year"],
-        #     # "rated": movie["Rated"],
-        #     # "released": movie["Released"],
-        #     # "runtime": movie["Runtime"],
-        #     # "genre": movie["Genre"],
-        #     # "director": movie["Director"],
-        #     # "writer": movie["Writer"],
-        #     # "actors": movie["Actors"],
-        #     # "plot": movie["Plot"],
-        #     # "language": movie["Language"],
-        #     # "poster": movie["Poster"],
-        #     # "imdbRating": movie["imdbRating"],
-        #     # "imdbID": movie["imdbID"],
-        #     # "DVD": movie["DVD"],
-        #     # "boxOffice": movie["BoxOffice"],
-        #     # "production": movie["Production"],
-        #     # "website": movie["Website"],
-
-        # }
-
     except (KeyError, TypeError, ValueError):
         return None
-    # try:
-    #     api_key = os.environ.get("API_KEY")
-    #     response = requests.get(
-    #         f"api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103")
-    #     response.raise_for_status()
-    # except requests.RequestException:
-    #     return None
-
-    # try:
-    #     all_movie = response.json()
-    #     return all_movie
-
-    # except (KeyError, TypeError, ValueError):
-    #     return None
 
 
 def apology(message):
@@ -121,27 +83,37 @@ def lookup(title):
     # parse response
     try:
         movie = response.json()
-        return {
-            "search": movie["Search"],
-            # "year": movie["Year"],
-            # "rated": movie["Rated"],
-            # "released": movie["Released"],
-            # "runtime": movie["Runtime"],
-            # "genre": movie["Genre"],
-            # "director": movie["Director"],
-            # "writer": movie["Writer"],
-            # "actors": movie["Actors"],
-            # "plot": movie["Plot"],
-            # "language": movie["Language"],
-            # "poster": movie["Poster"],
-            # "imdbRating": movie["imdbRating"],
-            # "imdbID": movie["imdbID"],
-            # "DVD": movie["DVD"],
-            # "boxOffice": movie["BoxOffice"],
-            # "production": movie["Production"],
-            # "website": movie["Website"],
+        search = movie["Search"]
+        search_list = []
+        for i in range(len(search)):
+            search_prop = {"title": search[i]["Title"], "year": search[i]
+                           ["Year"], "poster": search[i]["Poster"],
+                           "id": search[i]["imdbID"]}
+            search_list.append(search_prop)
 
-        }
+        return search_list
+        # search = movie["search"]
+        # return {
+        #     "search": movie["Search"],
+        #     # "year": movie["Year"],
+        #     # "rated": movie["Rated"],
+        #     # "released": movie["Released"],
+        #     # "runtime": movie["Runtime"],
+        #     # "genre": movie["Genre"],
+        #     # "director": movie["Director"],
+        #     # "writer": movie["Writer"],
+        #     # "actors": movie["Actors"],
+        #     # "plot": movie["Plot"],
+        #     # "language": movie["Language"],
+        #     # "poster": movie["Poster"],
+        #     # "imdbRating": movie["imdbRating"],
+        #     # "imdbID": movie["imdbID"],
+        #     # "DVD": movie["DVD"],
+        #     # "boxOffice": movie["BoxOffice"],
+        #     # "production": movie["Production"],
+        #     # "website": movie["Website"],
+
+        # }
 
     except (KeyError, TypeError, ValueError):
         return None

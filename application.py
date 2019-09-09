@@ -142,8 +142,9 @@ def movie():
     if request.method == "POST":
         title = request.form.get("title")
 
-        lookup_title = lookup(title)
-        return render_template("single.html", lookup_title=lookup_title)
+        lookup_search = lookup(title)
+        # print(lookup_title)
+        return render_template("search_list.html", lookup_search=lookup_search)
 
     return render_template("index.html")
 
@@ -151,3 +152,15 @@ def movie():
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
     return render_template("dashboard.html")
+
+
+# def errorhandler(e):
+#     """Handle error"""
+#     if not isinstance(e, HTTPException):
+#         e = InternalServerError()
+#     return apology(e.name, e.code)
+
+
+# # Listen for errors
+# for code in default_exceptions:
+#     app.errorhandler(code)(errorhandler)

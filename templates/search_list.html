@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Search Movie
+{% endblock %}
+
+{% block style %}
+<style>
+    .search-card {
+        width: 400px;
+    }
+
+    .img {
+        height: 450px;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<section style="">
+    <div class="container">
+
+        <div class="row">
+            {% for lookup in lookup_search %}
+            <div class="col-md-6 mb-4">
+                <div class="card search-card">
+                    <img src="{{lookup["poster"]}}" class="card-img-top img" alt="...">
+                    <div class="card-body">
+                        <h6 class="">{{lookup["title"]}}</h6>
+                        <a href="" style="margin-right: 0;">More Info</a>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

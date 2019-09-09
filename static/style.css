@@ -1,6 +1,6 @@
 body,
 html {
-  background-color: whitesmoke;
+  background-color: #1d1d1d;
 }
 
 .navbar {
@@ -191,4 +191,13 @@ a:hover {
   color: white;
   margin-right: 25rem;
   margin-top: 8rem;
+}
+
+.card-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700
+}
+
+.card-text {
+  font-family: Arial, Helvetica, sans-serif
 }
