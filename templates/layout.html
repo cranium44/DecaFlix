@@ -33,17 +33,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href=""><i class="far fa-eye"></i> Tv Shows</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            The MovieDB
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"><i class="fas fa-globe-africa"></i> Shows</a>
-                            <a class="dropdown-item" href="#"><i class="fab fa-discourse"></i> Discover</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="fab fa-envira"></i> Gallary</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href=""> <i class="fab fa-envira"></i> Gallery</a>
                     </li>
                 </ul>
                 {% if session.user_id %}
@@ -54,7 +45,7 @@
                     <div class="nav-item dropdown mr-4 mt-2">
                         <a class="nav-link dropdown-toggle signup" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="far fa-user"></i> Hey {{session.username}}
+                            <i class="far fa-user"></i> Hey {{session.name}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#"><i class="fas fa-globe-africa"></i> Events</a>

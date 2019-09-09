@@ -1,60 +1,70 @@
-{% extends "layout.html" %}
-
-{% block title %}
-Homepage
-{% endblock %}
-
-{% block style %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-{% endblock %}
-
-{% block main %}
+{% extends "layout.html" %} {% block title %} Homepage {% endblock %} {% block
+style %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"
+/>
+{% endblock %} {% block main %}
 
 <section class="head">
-    <div class="head-content">
-        <div class="text-center">
-            <h1>Decaflix movie Box: HD smallest size</h1>
-        </div>
-        <div class="para">
-            <div>
-                <p class="para-txt text-center">Welcome to the official Decaflix website 😍. Here you will be able
-                    to
-                    browse and view movies collections.
-                </p>
-            </div>
-        </div>
+  <div class="head-content">
+    <div class="text-center">
+      <h1>Decaflix movie Box: HD smallest size</h1>
     </div>
+    <div class="para">
+      <div>
+        <p class="para-txt text-center">
+          Welcome to the official Decaflix website 😍. Here you will be able to
+          browse and view movies collections.
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section>
-    <div class="container">
-        <div class="lead my-4">
-            <span class="lead">Popular movies</span>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-5">
-                            <a href="./single.html"> <img src="https://i.ytimg.com/vi/848q7WLmwbk/maxresdefault.jpg"
-                                    class="card-img" alt="..." style="height: 100%;"></a>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <a h5 href="./single.html">
-                                    <h5 class="card-title">Mantera</h5>
-                                </a>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                            <div class="card-footer"><a href="./single.html">more info</a></div>
-                        </div>
-                    </div>
-                </div>
+  <div class="container">
+    <div class="lead my-4">
+      <span class="lead">Popular movies</span>
+    </div>
+    <hr />
+    <div class="row">
+      {% for movie in movies %}
+      <div class="col-md-6">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-5">
+              <a href="./single.html">
+                <img
+                  src="https://i.ytimg.com/vi/848q7WLmwbk/maxresdefault.jpg"
+                  class="card-img"
+                  alt="..."
+                  style="height: 100%;"
+              /></a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
+              <div class="card-body">
+                <a h5 href="./single.html">
+                  <h5 class="card-title">{{ movie["title"] }}</h5>
+                </a>
+                <p class="card-text">
+                  {{ movie["overview"] }}
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">{{ movie["date"] }}</small>
+                </p>
+              </div>
+              <div class="card-footer">
+                <a href="./single.html">more info</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- <div class="col-md-6">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-5">
@@ -75,117 +85,66 @@ Homepage
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-5">
-                            <a href="./single.html"><img
-                                    src="https://img1.hotstarext.com/image/upload/f_auto,t_hcdl/sources/r1/cms/prod/7632/177632-h"
-                                    class="card-img" alt="..." style="height: 100%;"></a>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <a h5 href="./single.html">
-                                    <h5 class="card-title">Thor</h5>
-                                </a>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                            <div class="card-footer"><a href="./single.html">more info</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-5">
-                            <a href="./single.html"><img
-                                    src="https://static.rogerebert.com/uploads/review/primary_image/reviews/dora-and-the-lost-city-of-gold-movie-review-2019/hero_dora-lost-city-of-gold-movie-review-1.jpg"
-                                    class="card-img" alt="..." style="height: 100%;"></a>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <a h5 href="./single.html">
-                                    <h5 class="card-title">Trees</h5>
-                                </a>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                            <div class="card-footer"><a href="./single.html">more info</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+            </div> -->
     </div>
-
+  </div>
 </section>
 
 <section>
-    <div class="container my-4">
-        <div>
-            <p class="lead">Movie Series</p>
-        </div>
-        <hr>
-        <div class="card">
-            <div class="card-body">
-                <div class="movie-tables">
-                    <table id="table_id" class="display">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+  <div class="container my-4">
+    <div>
+      <p class="lead">Movie Series</p>
     </div>
-
+    <hr />
+    <div class="card">
+      <div class="card-body">
+        <div class="movie-tables">
+          <table id="table_id" class="display">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-{% endblock %}
-
-{% block script %}
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
-</script>
+{% endblock %} {% block script %}
+<script
+  type="text/javascript"
+  charset="utf8"
+  src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"
+></script>
 
 <script>
-    $(document).ready(function () {
-        $('#table_id').DataTable();
-    });
+  $(document).ready(function() {
+    $("#table_id").DataTable();
+  });
 </script>
 {% endblock %}
