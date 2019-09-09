@@ -47,9 +47,10 @@
                 <a href="{{lookup_title["website"]}}"><img src="{{lookup_title["poster"]}}" class="img-fluid"
                         alt="Responsive image"></a>
             </div>
-
+            
             <div class="col-md-8">
-                <h1>{{lookup_title["title"]}} <span class="text-muted year">({{lookup_title["year"]}})</span></h1>
+                <h1><span id="title">{{lookup_title["title"]}}</span> <span class="text-muted year">({{lookup_title["year"]}})</span></h1>
+                <span id="id" style="display: none;">{{lookup_title["imdbID"]}}</span>
                 <a class="play-a" href="{{lookup_title["website"]}}" target="_blank"><i
                         class="play far fa-play-circle"></i>
                     play trailer</a>
@@ -57,8 +58,8 @@
                 <p class="text-muted my-4">Realeased: {{lookup_title["released"]}}</p>
 
                 <div>
-                    <span class="text-muted tooltiptext"> <i class="rate fas fa-star mr-2"></i> imdbRating
-                        {{lookup_title["imdbRating"]}}</span>
+                    <span class="text-muted tooltiptext" ><i class="rate fas fa-star mr-2"></i> imdbRating <span id="rating">{{lookup_title["imdbRating"]}}</span>
+                        </span>
 
                     <span class="text-muted tooltiptext"> <i class="fab fa-adn ml-3"></i></i> BoxOffice
                         {{lookup_title["boxOffice"]}}</span>
@@ -92,13 +93,45 @@
             </div>
 
         </div>
-
-        <!-- <iframe class="frame" src="{{lookup_title["website"]}}"></iframe>
-
-        <iframe id="frame2" class="frame" src=""></iframe> -->
-
+        <div>
+            <button class="btn btn-sm btn-success" id="addMovie"><i class="fa fa-plus" aria-hidden="true"></i> Add Movie</button>
+        </div>
     </div>
 
 </section>
 
+{% endblock %}
+
+{% block script %}
+<script>
+    var button = document.getElementById("addMovie");
+    var id = document.getElementById('id');
+    var title = document.getElementById('title');
+    var rating = document.getElementById('rating');
+    var data1 = {
+        'id': id.textContent,
+        'title': title.textContent,
+        'rating': rating.textContent
+    };
+    console.log(data1);
+    button.addEventListener('click', function(){
+    var id = $("#id").text();
+    var title = $('#title').text();
+    var rating = $('#rating').text();
+        $.ajax({
+            method:"POST",
+            url:"/add_movie",
+            contentType:"application/json; charset=utf-8",
+            data: JSON.stringify({
+                id:id,
+                title:title,
+                rating:rating
+            }),
+            success:function(){
+                alert("success")
+            }
+        })
+        
+    });
+</script>
 {% endblock %}

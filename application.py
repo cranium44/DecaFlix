@@ -1,6 +1,6 @@
 import os
 
-from cs50 import SQL
+from sql import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
 from helpers import lookup, login_required, all
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -14,13 +14,12 @@ app.secret_key = os.urandom(24)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # configure cs50 Library to use SQLite database
-db = SQL("sqlite:///decaflix1.db")
+db = SQL("sqlite:///decaflix.db")
 
 # index
 @app.route("/")
 def index():
     movies = all()
-
     return render_template("index.html", movies=movies)
 
 
@@ -57,7 +56,7 @@ def login():
 
             # Remember which user has logged in
             session["user_id"] = rows[0]["id"]
-            session["name"] = rows[0]["name"]
+            session["username"] = rows[0]["email"]
 
             # Redirect user to home page
             return redirect("/")
@@ -89,23 +88,23 @@ def register():
         name = request.form.get("name").casefold()
         email = request.form.get("email")
         password = request.form.get("password")
-        confirmation = request.form.get("confirmation")
+        confirm_password = request.form.get("confirmation")
 
         # validate input before saving to the database
         errors = []
 
         # query database for username to know if it already exists
         rows = db.execute(
-            "SELECT * FROM users WHERE name = :name", name=name)
+            "SELECT * FROM users WHERE email = :email", email=email)
 
         if not name and not email and not password:
             errors.append({"msg": "Please fill in all fields"})
 
         elif len(rows) > 0:
-            errors.append({"msg": "Username already exist"})
+            errors.append({"msg": "Email already exist"})
 
         elif not name:
-            errors.append({"msg": "Username field must not be empty"})
+            errors.append({"msg": "Name field must not be empty"})
 
         elif not email:
             errors.append({"msg": "Email field must not be empty"})
@@ -113,7 +112,7 @@ def register():
         elif not password:
             errors.append({"msg": "Password must not be empty"})
 
-        elif password != confirmation:
+        elif password != confirm_password:
             errors.append({"msg": "Passwords do not match"})
 
         if len(errors) > 0:
@@ -129,7 +128,7 @@ def register():
 
             # Remember which user has logged in
             session["user_id"] = id
-            session["name"] = name
+            session["username"] = email
 
             return redirect("/")
 
@@ -142,13 +141,25 @@ def movie():
     if request.method == "POST":
         title = request.form.get("title")
 
-        lookup_search = lookup(title)
-        # print(lookup_title)
-        return render_template("search_list.html", lookup_search=lookup_search)
+        lookup_title = lookup(title)
+        return render_template("single.html", lookup_title=lookup_title)
 
     return render_template("index.html")
 
+@app.route('/add_movie', methods=['POST'])
+def add_movie():
+    # data = request.args.get("q")
+    data = None
+    if request.method == 'POST':
+        data = request.get_json()
+        id = data["id"]
+        title = data["title"]
+        rating = data["rating"]
+        user_id = session["user_id"]
+        db.execute("INSERT INTO collection(id, user_id, title, rating) VALUES (:id, :user_id, :title, :rating)", id = id, user_id=user_id, title=title, rating=rating)
+        return redirect("/collection")
 
-@app.route("/dashboard", methods=["GET"])
-def dashboard():
-    return render_template("dashboard.html")
+
+@app.route('/collection', methods=['GET'])
+def collection():
+   return render_template("collection.html")
