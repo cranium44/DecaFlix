@@ -141,10 +141,11 @@ def movie():
     if request.method == "POST":
         title = request.form.get("title")
 
-        lookup_title = lookup(title)
-        return render_template("single.html", lookup_title=lookup_title)
+        lookup_search = lookup(title)
+        return render_template("search_list.html", lookup_search=lookup_search)
 
     return render_template("index.html")
+
 
 @app.route('/add_movie', methods=['POST'])
 def add_movie():
@@ -156,10 +157,11 @@ def add_movie():
         title = data["title"]
         rating = data["rating"]
         user_id = session["user_id"]
-        db.execute("INSERT INTO collection(id, user_id, title, rating) VALUES (:id, :user_id, :title, :rating)", id = id, user_id=user_id, title=title, rating=rating)
+        db.execute("INSERT INTO collection(id, user_id, title, rating) VALUES (:id, :user_id, :title, :rating)",
+                   id=id, user_id=user_id, title=title, rating=rating)
         return redirect("/collection")
 
 
 @app.route('/collection', methods=['GET'])
 def collection():
-   return render_template("collection.html")
+    return render_template("collection.html")

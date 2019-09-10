@@ -1,6 +1,7 @@
 {% extends "layout.html" %} {% block title %} Homepage {% endblock %} {% block
 style %}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css" />
+
 {% endblock %} {% block main %}
 
 <section class="head">
@@ -26,48 +27,21 @@ style %}
         </div>
         <hr />
         <div class="row">
+
+
             {% for movie in movies %}
+
             <div class="col-md-6">
-                <div class="card mb-3" style="max-width: 540px;">
+                <!-- <div class="card mb-3" style="border:none; height: 90%;">
                     <div class="row no-gutters">
                         <div class="col-md-5">
                             <a href="./single.html">
-                                <img src="{{ movie["poster_path"]}}" class="card-img" alt="..."
-                                    style="height: 100%;" /></a>
+                                <img src="{{movie["poster_path"]}}" class="card-img" alt="..." style="height: 100%;" /></a>
                         </div>
                         <div class="col-md-7">
-                            <div class="card-body">
-                                <a h5 href="./single.html">
-                                    <h5 class="card-title">{{ movie["title"] }}</h5>
-                                </a>
-                                <p class="card-text">
-                                    {{ movie["overview"] }}
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-muted">{{ movie["date"] }}</small>
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                <a href="./single.html">more info</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr />
-                {% for movie in movies %}
-
-
-                <div class="card mb-3" style="border: none">
-                    <div class="row no-gutters">
-                        <div class="col-md-5">
-                            <a href="./single.html">
-                                <img src="https://i.ytimg.com/vi/848q7WLmwbk/maxresdefault.jpg" class="card-img"
-                                    alt="..." style="height: 100%;" /></a>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <a h5 href="./single.html">
-                                    <h5 class="lead card-title" id="title">{{ movie["title"] }}</h5>
+                            <div class="card-body" style="height: 90%;">
+                                <a 0href="./single.html">
+                                    <h2 id="title">{{ movie["title"] }}</h2>
                                 </a>
                                 <p class="card-text">
                                     {{ movie["overview"] }}
@@ -80,15 +54,28 @@ style %}
                                 </p>
                             </div>
                             <div class="card-footer">
-                                <a id="submit" href="#" data-id="{{ movie["id"] }}">more info</a>
+                                <a id="submit" href="#" class="btn btn-outline-dark btn-sm" data-id="{{ movie["id"] }}">more
+                                    info</a>
                             </div>
                         </div>
                     </div>
+                </div> -->
+                <div class="card my-4" style="width: 28rem;">
+                    <img src="{{movie["poster_path"]}}" class="card-img-top" style="height: 481px;" alt="...">
+                    <div class="card-body">
+                        <h6 class="lead">{{ movie["title"] }}</h6>
+                        <span><small class="text-muted"><i class="far fa-calendar-alt"></i>
+                                {{ movie["date"] }}</small></span>
+                        <a id="submit" href="/single" class="btn btn-outline-dark btn-sm float-right"
+                            data-id="{{ movie["id"] }}">more
+                            info</a>
+                    </div>
                 </div>
-
-
-                {% endfor %}
             </div>
+            {% endfor %}
+
+        </div>
+    </div>
 </section>
 
 <section>
