@@ -20,18 +20,17 @@ Search Movie
 <section>
     <div class="container my-4">
 
-        <div class="row">
+        <div class="row" id="movies">
             {% for lookup in lookup_search %}
             <div class="col-md-6 mb-4">
                 <div class="card search-card" style="border: none">
                     <img src="{{lookup["poster"]}}" class="card-img-top img" alt="{{lookup["title"]}}">
-                    <div class="card-body">
+                    <div class="card-body" >
                         <h6 class="">{{lookup["title"]}}</h6>
-                        <a href="#" id="title" class="btn btn-outline-dark btn-sm" data-title="{{lookup["title"]}}"
+                        <a href='single?id={{lookup["id"]}}' data-id="{{lookup["id"]}}" class="btn btn-outline-dark btn-sm info" data-title="{{lookup["title"]}}"
                             style="margin-right: 0;">More Info</a>
                         <span class="ml-3 text-muted"><i class="far fa-calendar-alt"></i> {{lookup["year"]}}</span>
                     </div>
-
                 </div>
             </div>
             {% endfor %}
@@ -42,10 +41,24 @@ Search Movie
 {% endblock %}
 
 {% block script %}
-<!-- <script>
-    const tit = document.querySelector("#title").addEventListener("click", (e) => {
-        e.preventDefault()
-        console.log(e.target)
-    })
-</script> -->
+<script>
+    $(function(){
+
+        $('#movies').delegate('.info', 'click', function(){
+            id = $(this).attr('data-id');
+            console.log(id);
+            $.ajax({
+                method: "POST",
+                url: "/single",
+                data: JSON.stringify({
+                    id: $(this).attr('data-id')
+                }),
+                contentType: "application/json",
+                success: function(dat){
+                    return data
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
