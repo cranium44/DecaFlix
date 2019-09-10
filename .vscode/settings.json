@@ -1,8 +1,0 @@
-{
-    "python.pythonPath": "venv/bin/python",
-    "sqltools.connections": [{
-        "database": ".\\decaflix.db",
-        "dialect": "SQLite",
-        "name": "deca"
-    }]
-}
