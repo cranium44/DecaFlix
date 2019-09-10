@@ -56,7 +56,7 @@ def login():
 
             # Remember which user has logged in
             session["user_id"] = rows[0]["id"]
-            session["username"] = rows[0]["email"]
+            session["name"] = rows[0]["name"]
 
             # Redirect user to home page
             return redirect("/")
@@ -128,7 +128,7 @@ def register():
 
             # Remember which user has logged in
             session["user_id"] = id
-            session["username"] = email
+            session["name"] = name
 
             return redirect("/")
 
