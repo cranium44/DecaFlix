@@ -2,7 +2,7 @@ import os
 
 from sql import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session, url_for
-from helpers import lookup, login_required, all
+from helpers import lookup, login_required, all, lookup_by_id
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_session import Session
 
@@ -141,8 +141,8 @@ def movie():
     if request.method == "POST":
         title = request.form.get("title")
 
-        lookup_title = lookup(title)
-        return render_template("single.html", lookup_title=lookup_title)
+        lookup_search = lookup(title)
+        return render_template("search_list.html", lookup_search=lookup_search)
 
     return render_template("index.html")
 
@@ -162,4 +162,15 @@ def add_movie():
 
 @app.route('/collection', methods=['GET'])
 def collection():
-   return render_template("collection.html")
+    data = db.execute("SELECT * FROM collection WHERE user_id = :user_id")
+    print(data)
+    return render_template("collection.html")
+
+@app.route('/single', methods=['GET', 'POST'])
+def method_name():
+    if request.method == "GET":
+       id = request.args.get('id')
+       print(id)
+    #    id  = data['id']
+       lookup_title = lookup_by_id(id)
+       return render_template("single.html", lookup_title=lookup_title)
