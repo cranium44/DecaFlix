@@ -100,7 +100,6 @@ def lookup_by_id(i_d):
         res.raise_for_status()
         mov = res.json()
         imdb_id = mov["imdb_id"]
-        print(imdb_id)
     else:
         imdb_id = i_d
     # Contact API
