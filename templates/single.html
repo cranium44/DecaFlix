@@ -44,25 +44,27 @@
     <div class="container">
         <div class="single row">
             <div class="col-md-4">
-                <a href="{{lookup_title["website"]}}"><img src="{{lookup_title["poster"]}}" class="img-fluid"
+                <a href="{{lookup_title["website"]}}" target="_blank"><img src="{{lookup_title["poster"]}}" class="img-fluid"
                         alt="Responsive image"></a>
             </div>
-            
+
             <div class="col-md-8">
-                <h1><span id="title">{{lookup_title["title"]}}</span> <span class="text-muted year">({{lookup_title["year"]}})</span></h1>
-                <span id="id" style="display: none;">{{lookup_title["imdbID"]}}</span>
+                <h1><span id="title">{{lookup_title["title"]}}</span> <span
+                        class="text-muted year">({{lookup_title["year"]}})</span></h1>
+                <span id="id" style="display: none;">{{lookup_title["id"]}}</span>
                 <a class="play-a" href="{{lookup_title["website"]}}" target="_blank"><i
                         class="play far fa-play-circle"></i>
                     play trailer</a>
 
-                <p class="text-muted my-4">Realeased: {{lookup_title["released"]}}</p>
+                <p class="text-muted my-4">Realeased: {{lookup_title["year"]}}</p>
 
                 <div>
-                    <span class="text-muted tooltiptext" ><i class="rate fas fa-star mr-2"></i> imdbRating <span id="rating">{{lookup_title["rating"]}}</span>
-                        </span>
+                    <span class="text-muted tooltiptext"><i class="rate fas fa-star mr-2"></i> imdbRating <span
+                            id="rating">{{lookup_title["rating"]}}</span>
+                    </span>
 
                     <span class="text-muted tooltiptext"> <i class="fab fa-adn ml-3"></i></i> BoxOffice
-                        {{lookup_title["boxOffice"]}}</span>
+                        {{lookup_title["gross"]}}</span>
                 </div>
 
                 <div class="text my-4">
@@ -90,12 +92,14 @@
                 <div>
                     <p>{{lookup_title["writer"]}}</p>
                 </div>
+                <div class="float-right">
+                <button class="btn btn-sm btn-success" id="addMovie"><i class="fa fa-plus" aria-hidden="true"></i> Add
+                    Movie</button>
             </div>
+            </div>
+            
+        </div>
 
-        </div>
-        <div>
-            <button class="btn btn-sm btn-success" id="addMovie"><i class="fa fa-plus" aria-hidden="true"></i> Add Movie</button>
-        </div>
     </div>
 
 </section>
@@ -114,24 +118,23 @@
         'rating': rating.textContent
     };
     console.log(data1);
-    button.addEventListener('click', function(){
-    var id = $("#id").text();
-    var title = $('#title').text();
-    var rating = $('#rating').text();
+    button.addEventListener('click', function () {
+        var id = $("#id").text();
+        var title = $('#title').text();
+        var rating = $('#rating').text();
         $.ajax({
-            method:"POST",
-            url:"/add_movie",
-            contentType:"application/json; charset=utf-8",
+            method: "POST",
+            url: "/add_movie",
+            contentType: "application/json; charset=utf-8",
             data: JSON.stringify({
-                id:id,
-                title:title,
-                rating:rating
+                id: id,
+                title: title,
+                rating: rating
             }),
-            success:function(){
-                alert("success")
+            success: function () {
+                window.open("/collection");
             }
         })
-        
     });
 </script>
 {% endblock %}

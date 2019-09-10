@@ -156,16 +156,17 @@ def add_movie():
         title = data["title"]
         rating = data["rating"]
         user_id = session["user_id"]
-        db.execute("INSERT INTO collection(id, user_id, title, rating) VALUES (:id, :user_id, :title, :rating)", id = id, user_id=user_id, title=title, rating=rating)
+        db.execute("INSERT INTO collection (id, user_id, title, rating) VALUES (:id, :user_id, :title, :rating)", id = id, user_id=user_id, title=title, rating=rating)
         return redirect("/collection")
 
 
 @app.route('/collection', methods=['GET'])
 def collection():
-    user_id = session["user_id"]
-    data = db.execute("SELECT * FROM collection WHERE user_id = :user_id", user_id=user_id)
-    print(data)
-    return render_template("collection.html")
+    if request.method == 'GET':
+        user_id = session["user_id"]
+        collection = db.execute("SELECT * FROM collection WHERE user_id = :user_id", user_id=user_id)
+        print(collection)
+        return render_template("collection.html",collection=collection)
 
 @app.route('/single', methods=['GET', 'POST'])
 @login_required
