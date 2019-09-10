@@ -28,9 +28,8 @@ Search Movie
                     <img src="{{lookup["poster"]}}" class="card-img-top img" alt="{{lookup["title"]}}">
                     <div class="card-body">
                         <h6 class="">{{lookup["title"]}}</h6>
-                        <a href='single?id={{lookup["id"]}}' data-id="{{lookup["id"]}}"
-                            class="btn btn-outline-dark btn-sm info" data-title="{{lookup["title"]}}"
-                            style="margin-right: 0;">More Info</a>
+                        <a href='single?id={{lookup["id"]}}' class="btn btn-outline-dark btn-sm info"
+                            data-title="{{lookup["title"]}}" style="margin-right: 0;">More Info</a>
                         <span class="ml-3 text-muted"><i class="far fa-calendar-alt"></i> {{lookup["year"]}}</span>
                     </div>
                 </div>
@@ -53,7 +52,7 @@ Search Movie
 {% endblock %}
 
 {% block script %}
-<script>
+<!-- <script>
     $(function () {
 
         $('#movies').delegate('.info', 'click', function () {
@@ -72,5 +71,5 @@ Search Movie
             });
         });
     });
-</script>
+</script> -->
 {% endblock %}
