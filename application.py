@@ -56,7 +56,7 @@ def login():
 
             # Remember which user has logged in
             session["user_id"] = rows[0]["id"]
-            session["username"] = rows[0]["email"]
+            session["name"] = rows[0]["name"]
 
             # Redirect user to home page
             return redirect("/")
@@ -128,7 +128,7 @@ def register():
 
             # Remember which user has logged in
             session["user_id"] = id
-            session["username"] = email
+            session["name"] = name
 
             return redirect("/")
 
@@ -145,6 +145,7 @@ def movie():
         return render_template("search_list.html", lookup_search=lookup_search)
     if request.method == 'GET':
         return render_template("index.html")
+
 
 @app.route('/add_movie', methods=['POST'])
 def add_movie():
@@ -168,12 +169,13 @@ def collection():
         print(collection)
         return render_template("collection.html",collection=collection)
 
+
 @app.route('/single', methods=['GET', 'POST'])
 @login_required
 def method_name():
     if request.method == "GET":
-       id = request.args.get('id')
-       print(id)
+        id = request.args.get('id')
+        print(id)
     #    id  = data['id']
-       lookup_title = lookup_by_id(id)
-       return render_template("single.html", lookup_title=lookup_title)
+        lookup_title = lookup_by_id(id)
+        return render_template("single.html", lookup_title=lookup_title)

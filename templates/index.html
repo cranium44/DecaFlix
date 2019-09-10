@@ -72,11 +72,22 @@ style %}
                 </div>
             </div>
             {% endfor %}
+
         </div>
+        {% else %}
+        <div class="para">
+                <div>
+                    <p class="lead para-txt text-center" style="color: #ffffff;"> 
+                       No records found
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </section>
 
-<section>
+<!-- <section>
     <div class="container my-4">
         <div>
             <p class="lead">Movie Series</p>
@@ -88,7 +99,7 @@ style %}
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 {% endblock %} {% block script %}
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
