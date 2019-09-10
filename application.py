@@ -168,11 +168,13 @@ def collection():
     print(data)
     return render_template("collection.html")
 
+
 @app.route('/single', methods=['GET', 'POST'])
+@login_required
 def method_name():
     if request.method == "GET":
-       id = request.args.get('id')
-       print(id)
+        id = request.args.get('id')
+        print(id)
     #    id  = data['id']
-       lookup_title = lookup_by_id(id)
-       return render_template("single.html", lookup_title=lookup_title)
+        lookup_title = lookup_by_id(id)
+        return render_template("single.html", lookup_title=lookup_title)
