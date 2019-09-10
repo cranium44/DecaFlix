@@ -143,8 +143,8 @@ def movie():
 
         lookup_search = lookup(title)
         return render_template("search_list.html", lookup_search=lookup_search)
-
-    return render_template("index.html")
+    if request.method == 'GET':
+        return render_template("index.html")
 
 @app.route('/add_movie', methods=['POST'])
 def add_movie():
@@ -162,11 +162,13 @@ def add_movie():
 
 @app.route('/collection', methods=['GET'])
 def collection():
-    data = db.execute("SELECT * FROM collection WHERE user_id = :user_id")
+    user_id = session["user_id"]
+    data = db.execute("SELECT * FROM collection WHERE user_id = :user_id", user_id=user_id)
     print(data)
     return render_template("collection.html")
 
 @app.route('/single', methods=['GET', 'POST'])
+@login_required
 def method_name():
     if request.method == "GET":
        id = request.args.get('id')

@@ -29,7 +29,7 @@ def all():
     try:
         api_key = os.environ.get("API_KEY")
         response = requests.get(
-            f"http://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103")
+            f"https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=28dda9f76d76f128b47831768bc9a103")
         response.raise_for_status()
     except requests.RequestException:
         return None
@@ -88,13 +88,25 @@ def lookup(title):
         return None
 
 
+
 def lookup_by_id(i_d):
     """Look up id for movie"""
-
+    imdb_id = 0
+    str_id = str(i_d)
+    if str_id[0].isdigit():
+    #contact the moviedb api for inmdb id
+        res = requests.get(
+                f"https://api.themoviedb.org/3/movie/{i_d}/external_ids?api_key=28dda9f76d76f128b47831768bc9a103")
+        res.raise_for_status()
+        mov = res.json()
+        imdb_id = mov["imdb_id"]
+        print(imdb_id)
+    else:
+        imdb_id = i_d
     # Contact API
     try:
         response = requests.get(
-            f"http://www.omdbapi.com/?i={i_d}&apikey=ced7be9a")
+            f"http://www.omdbapi.com/?i={imdb_id}&apikey=ced7be9a")
         response.raise_for_status()
     except requests.RequestException:
         return None

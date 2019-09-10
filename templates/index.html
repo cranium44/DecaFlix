@@ -74,7 +74,7 @@ style %}
                         <h6 class="lead">{{ movie["title"] }}</h6>
                         <span><small class="text-muted"><i class="far fa-calendar-alt"></i>
                                 {{ movie["date"] }}</small></span>
-                        <a id="submit" href="/single" class="btn btn-outline-dark btn-sm float-right"
+                        <a id="submit" href='single?id={{ movie["id"] }}'' class="btn btn-outline-dark btn-sm float-right"
                             data-id="{{ movie["id"] }}">more
                             info</a>
                     </div>
