@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Search Movie
+{% endblock %}
+
+{% block style %}
+<style>
+    .search-card {
+        width: 400px;
+    }
+
+    .img {
+        height: 450px;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<section>
+    <div class="container my-4">
+        {% if lookup_search %}
+
+        <div class="row" id="movies">
+            {% for lookup in lookup_search %}
+            <div class="col-md-6 mb-4">
+                <div class="card search-card" style="border: none">
+                    <img src="{{lookup["poster"]}}" class="card-img-top img" alt="{{lookup["title"]}}">
+                    <div class="card-body">
+                        <h6 class="">{{lookup["title"]}}</h6>
+                        <a href='single?id={{lookup["id"]}}' class="btn btn-outline-dark btn-sm info"
+                            data-title="{{lookup["title"]}}" style="margin-right: 0;">More Info</a>
+                        <span class="ml-3 text-muted"><i class="far fa-calendar-alt"></i> {{lookup["year"]}}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="para">
+            <div>
+                <p class="lead para-txt text-center" style="color: #ffffff;">
+                    There seem to be a problem with your network
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<!-- <script>
+    $(function () {
+
+        $('#movies').delegate('.info', 'click', function () {
+            id = $(this).attr('data-id');
+            console.log(id);
+            $.ajax({
+                method: "POST",
+                url: "/single",
+                data: JSON.stringify({
+                    id: $(this).attr('data-id')
+                }),
+                contentType: "application/json",
+                success: function (dat) {
+                    return data
+                }
+            });
+        });
+    });
+</script> -->
+{% endblock %}
