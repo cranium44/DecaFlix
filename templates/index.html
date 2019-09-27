@@ -31,36 +31,8 @@ style %}
             {% for movie in movies %}
 
             <div class="col-md-6">
-                <!-- <div class="card mb-3" style="border:none; height: 90%;">
-                    <div class="row no-gutters">
-                        <div class="col-md-5">
-                            <a href="./single.html">
-                                <img src="{{movie["poster_path"]}}" class="card-img" alt="..." style="height: 100%;" /></a>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body" style="height: 90%;">
-                                <a 0href="./single.html">
-                                    <h2 id="title">{{ movie["title"] }}</h2>
-                                </a>
-                                <p class="card-text">
-                                    {{ movie["overview"] }}
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-muted">{{ movie["date"] }}</small>
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-muted" data-id="{{ movie["id"] }}"></small>
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                <a id="submit" href="#" class="btn btn-outline-dark btn-sm" data-id="{{ movie["id"] }}">more
-                                    info</a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="card my-4" style="width: 28rem;">
-                    <img src="{{movie["poster_path"]}}" class="card-img-top" style="height: 481px;" alt="...">
+                <div class="card my-4" style="width: 100%;">
+                    <img src="{{movie["poster_path"]}}" class="card-img-top" style="height: 500px;" alt="...">
                     <div class="card-body">
                         <h6 class="lead">{{ movie["title"] }}</h6>
                         <span><small class="text-muted"><i class="far fa-calendar-alt"></i>
