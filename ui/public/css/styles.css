@@ -1,0 +1,62 @@
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #61ac40;
+}
+
+.navbar {
+    background-color: #ffffff;
+}
+
+
+.content {
+    background-color: #3e3c3c;
+}
+
+.single {
+    padding: 30px;
+    color: #ffffff;
+}
+
+.lead-text {
+    color: #ffffff;
+    font-size: 18px;
+
+}
+
+.year {
+    font-size: 30 px;
+}
+
+div.dropdown-menu a:hover {
+    color: #61ac40;
+}
+
+input {
+    border-radius: 50px !important;
+}
+
+.submit {
+    border-radius: 50px;
+}
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    display: flex;
+    flex-basis: 40%;
+}
+
+/* AM Still working on the navbar, i have not commited yet */
